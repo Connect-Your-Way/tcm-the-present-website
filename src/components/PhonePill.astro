@@ -1,0 +1,63 @@
+---
+/**
+ * PhonePill.astro — phone number pill in header + contact page (§06 00-layout.md §3.3)
+ * Renders plain text (no tel: link) when PHONE_NUMBER is the placeholder value.
+ * data-placeholder="phone-number" for grep-based placeholder detection (F-09).
+ */
+
+export interface Props {
+  phoneNumber: string;
+  showDataPlaceholder?: boolean;
+}
+
+const { phoneNumber, showDataPlaceholder = false } = Astro.props;
+const isPlaceholder = phoneNumber.includes("4XX") || phoneNumber === "#";
+---
+
+{isPlaceholder ? (
+  <span
+    class="phone-pill"
+    data-placeholder={showDataPlaceholder ? "phone-number" : undefined}
+    aria-label={phoneNumber}
+  >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+    </svg>
+    {phoneNumber}
+  </span>
+) : (
+  <a
+    class="phone-pill"
+    href={`tel:${phoneNumber.replace(/\s/g, "")}`}
+    aria-label={`Call ${phoneNumber}`}
+  >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+    </svg>
+    {phoneNumber}
+  </a>
+)}
+
+<style>
+  .phone-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    background: var(--color-accent-light);
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary);
+    text-decoration: none;
+    white-space: nowrap;
+    min-height: 44px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  a.phone-pill:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+/**
+ * /ko/clinic — Clinic Introduction page (Korean)
+ * M03: Full implementation — Hero, Clinic Intro placeholder, Treatment Areas grid,
+ *      Contact CTA strip. All 7 treatment specialties from treatment-areas.json.
+ * ADR-001: prerender = true (static page)
+ */
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import SectionBand from "../../components/SectionBand.astro";
+import TreatmentCard from "../../components/TreatmentCard.astro";
+import PlaceholderBlock from "../../components/PlaceholderBlock.astro";
+import CtaStrip from "../../components/CtaStrip.astro";
+import { loadLocaleBundle, getString } from "../../lib/i18n.ts";
+import { treatmentAreas } from "../../content/treatment-areas.ts";
+
+const locale = "ko" as const;
+const bundle = loadLocaleBundle(locale);
+const title = getString(bundle, "clinic.page.title");
+const description = getString(bundle, "clinic.page.description");
+---
+
+<Layout title={title} description={description} locale={locale} currentPath="/clinic">
+
+  <!-- ── PAGE HERO ────────────────────────────────────────────────────── -->
+  <!-- Communicates home-visit / nursing-home / retirement-village USP
+       in the first visible screen on desktop and mobile (M03 AC-1). -->
+  <Hero
+    eyebrow={getString(bundle, "clinic.hero.eyebrow")}
+    headline={getString(bundle, "clinic.hero.headline")}
+    subheadline={getString(bundle, "clinic.hero.subheadline")}
+    primaryCta={{
+      label: getString(bundle, "clinic.hero.cta"),
+      href: "/ko/contact/",
+    }}
+    imageAlt={getString(bundle, "clinic.hero.imageAlt")}
+  />
+
+  <!-- ── CLINIC INTRODUCTION BODY ──────────────────────────────────────── -->
+  <!-- F-09 placeholder block (M03 AC-2): styled, data-placeholder present,
+       text from ko/placeholder.clinic_intro (Korean string, not EN fallback).
+       Per F-09 AC: Korean-locale placeholders pull from ko.json. -->
+  <SectionBand background="cream">
+    <div class="container intro-section">
+      <h2 class="section-heading font-ko">{getString(bundle, "clinic.intro.heading")}</h2>
+      <PlaceholderBlock
+        placeholderId="clinic-intro"
+        i18nKey="placeholder.clinic_intro"
+        bundle={bundle}
+        locale={locale}
+      />
+    </div>
+  </SectionBand>
+
+  <!-- ── TREATMENT AREAS GRID ──────────────────────────────────────────── -->
+  <!-- 7 specialties from treatment-areas.json (DOCX source).
+       On /ko/clinic, TreatmentCard renders KO as primary + EN as sub-label
+       (activeLocale="ko" — bilingual label pattern per §06 02-clinic.md §5.4).
+       Uses TreatmentCard from M02 primitive library (M03 AC-4). -->
+  <section class="section-treatments">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="treatments-heading font-ko">{getString(bundle, "clinic.treatments.heading")}</h2>
+        <p class="treatments-subheading font-ko">{getString(bundle, "clinic.treatments.subheading")}</p>
+      </div>
+      <div class="treatments-grid" role="list">
+        {treatmentAreas.map((area) => (
+          <div role="listitem">
+            <TreatmentCard
+              nameEn={area.labelEn}
+              nameKo={area.labelKo}
+              descEn={area.descriptionEn}
+              descKo={area.descriptionKo}
+              activeLocale={locale}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT CTA STRIP ─────────────────────────────────────────────── -->
+  <!-- Bottom-of-page conversion capture (M03 AC-5). -->
+  <CtaStrip
+    sentence={getString(bundle, "clinic.cta.sentence")}
+    buttonLabel={getString(bundle, "clinic.cta.buttonLabel")}
+    buttonHref="/ko/contact/"
+  />
+
+</Layout>
+
+<style>
+  /* ── Clinic Introduction section ──────────────────────────────────── */
+  .intro-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: var(--space-xl);
+    line-height: 1.25;
+  }
+
+  .section-heading.font-ko {
+    font-family: var(--font-ko);
+  }
+
+  /* ── Treatment Areas section ──────────────────────────────────────── */
+  .section-treatments {
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .treatments-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: var(--space-md);
+    line-height: 1.25;
+  }
+
+  .treatments-heading.font-ko {
+    font-family: var(--font-ko);
+  }
+
+  .treatments-subheading {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-lg);
+    color: var(--color-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .treatments-subheading.font-ko {
+    font-family: var(--font-ko);
+  }
+
+  /* Responsive grid: 3-col ≥1024px, 2-col 768–1023px, 1-col <768px */
+  .treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    align-items: stretch;
+  }
+
+  @media (max-width: 1023px) {
+    .treatments-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .section-treatments {
+      padding: var(--space-2xl) 0;
+    }
+
+    .treatments-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .section-heading,
+    .treatments-heading {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+  }
+</style>

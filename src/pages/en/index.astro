@@ -1,0 +1,195 @@
+---
+/**
+ * /en/ — Home page (English)
+ * M02: Full home page implementation — Hero, Social Proof, Clinical Cases, Testimonials.
+ * ADR-001: prerender = true (static page)
+ */
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import SectionBand from "../../components/SectionBand.astro";
+import CaseCard from "../../components/CaseCard.astro";
+import TestimonialCard from "../../components/TestimonialCard.astro";
+import { loadLocaleBundle, getString } from "../../lib/i18n.ts";
+import { clinicalCases } from "../../content/clinical-cases.ts";
+import { testimonials } from "../../content/testimonials.ts";
+
+const locale = "en" as const;
+const bundle = loadLocaleBundle(locale);
+const title = getString(bundle, "home.page.title");
+const description = getString(bundle, "home.page.description");
+---
+
+<Layout title={title} description={description} locale={locale} currentPath="/">
+  <!-- ── HERO ──────────────────────────────────────────────────────── -->
+  <Hero
+    eyebrow={getString(bundle, "home.hero.eyebrow")}
+    headline={getString(bundle, "home.hero.headline")}
+    subheadline={getString(bundle, "home.hero.subheadline")}
+    primaryCta={{
+      label: getString(bundle, "home.hero.ctaPrimary"),
+      href: "/en/contact/",
+    }}
+    secondaryCta={{
+      label: getString(bundle, "home.hero.ctaSecondary"),
+      href: "/en/clinic/",
+    }}
+    imageAlt={getString(bundle, "home.hero.imageAlt")}
+  />
+
+  <!-- ── SOCIAL PROOF BAND ─────────────────────────────────────────── -->
+  <SectionBand background="soft">
+    <div class="social-proof">
+      <div class="stars-row" role="img" aria-label={getString(bundle, "home.socialProof.stars")}>
+        {Array.from({ length: 5 }).map(() => (
+          <svg class="star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+        ))}
+      </div>
+      <p class="social-statement">{getString(bundle, "home.socialProof.statement")}</p>
+    </div>
+  </SectionBand>
+
+  <!-- ── CLINICAL CASES ─────────────────────────────────────────────── -->
+  <section class="section-cases">
+    <div class="container">
+      <div class="section-heading">
+        <h2>{getString(bundle, "home.cases.heading")}</h2>
+        <p class="section-subheading">{getString(bundle, "home.cases.subheading")}</p>
+      </div>
+      <div class="cases-grid">
+        {clinicalCases.map((c) => (
+          <CaseCard
+            title={c.titleEn}
+            summary={c.summaryEn}
+            activeLocale={locale}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────────────── -->
+  <section class="section-testimonials">
+    <div class="container">
+      <div class="section-heading">
+        <h2>{getString(bundle, "home.testimonials.heading")}</h2>
+        <span class="demo-note">{getString(bundle, "home.testimonials.demoNote")}</span>
+      </div>
+      <div class="testimonials-list">
+        {testimonials.map((t, i) => (
+          <TestimonialCard
+            name={t.name}
+            summary={t.summary}
+            fullText={t.fullText}
+            cardId={`en-${i}`}
+            isPlaceholder={t.placeholder}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── Social proof ── */
+  .social-proof {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: center;
+    padding: var(--space-md) 0;
+  }
+
+  .stars-row {
+    display: flex;
+    gap: 4px;
+  }
+
+  .star {
+    width: 24px;
+    height: 24px;
+    color: var(--color-star);
+  }
+
+  .social-statement {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-xl);
+    font-weight: 500;
+    color: var(--color-text-heading);
+    max-width: 36rem;
+    line-height: 1.5;
+  }
+
+  /* ── Clinical cases ── */
+  .section-cases {
+    background: var(--color-white);
+    padding: var(--space-3xl) 0;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .section-heading h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-subheading {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-lg);
+    color: var(--color-text-muted);
+  }
+
+  .demo-note {
+    display: inline-block;
+    font-size: var(--text-body-sm);
+    color: var(--color-text-muted);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-style: italic;
+    margin-top: var(--space-sm);
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  @media (max-width: 1023px) {
+    .cases-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Testimonials ── */
+  .section-testimonials {
+    background: var(--color-bg-alt);
+    padding: var(--space-3xl) 0;
+  }
+
+  .testimonials-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+</style>

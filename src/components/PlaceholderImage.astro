@@ -1,0 +1,34 @@
+---
+/**
+ * PlaceholderImage.astro — F-09 silhouette image placeholder primitive (S3 §3.4)
+ * Renders a blob-frame with a person silhouette when the real photo is pending.
+ * The data-placeholder attribute marks this for content-swap.
+ */
+import BlobImage from "./BlobImage.astro";
+import type { LocaleBundle } from "../lib/i18n.ts";
+import { getString } from "../lib/i18n.ts";
+
+export interface Props {
+  placeholderId: string;
+  altKey: string;
+  blobVariant: 1 | 2 | 3;
+  bundle: LocaleBundle;
+}
+
+const { placeholderId, altKey, blobVariant, bundle } = Astro.props;
+const altText = getString(bundle, altKey);
+---
+
+<div class="placeholder-image-wrap" data-placeholder={placeholderId}>
+  <BlobImage
+    alt={altText}
+    blobVariant={blobVariant}
+    placeholder={true}
+  />
+</div>
+
+<style>
+  .placeholder-image-wrap {
+    display: contents;
+  }
+</style>

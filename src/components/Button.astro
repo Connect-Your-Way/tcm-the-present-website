@@ -1,0 +1,87 @@
+---
+/**
+ * Button.astro — primary / secondary / ghost button primitive (S3 §3.4)
+ * Renders as an <a> element; use form submit for actual form buttons.
+ */
+
+export interface Props {
+  variant: "primary" | "secondary" | "ghost";
+  href: string;
+  label: string;
+  ariaLabel?: string;
+}
+
+const { variant, href, label, ariaLabel } = Astro.props;
+---
+
+<a
+  href={href}
+  class={`btn btn--${variant}`}
+  aria-label={ariaLabel ?? undefined}
+>
+  {label}
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn--primary {
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-accent);
+  }
+
+  .btn--primary:hover,
+  .btn--primary:focus-visible {
+    background: var(--color-primary-mid);
+    border-color: var(--color-primary-mid);
+    color: var(--color-white);
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn--secondary:hover,
+  .btn--secondary:focus-visible {
+    background: var(--color-primary);
+    color: var(--color-white);
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-body);
+    border: 2px solid var(--color-border);
+  }
+
+  .btn--ghost:hover,
+  .btn--ghost:focus-visible {
+    background: var(--color-bg-alt);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+  }
+</style>

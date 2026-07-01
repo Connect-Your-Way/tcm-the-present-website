@@ -1,0 +1,68 @@
+---
+/**
+ * PlaceholderBlock.astro — F-09 styled placeholder block primitive (S3 §3.4, §4)
+ * Renders a dashed-border block indicating pending content.
+ * The data-placeholder attribute is the detection target for content-swap PRs.
+ */
+import type { LocaleBundle } from "../lib/i18n.ts";
+import { getString } from "../lib/i18n.ts";
+
+export interface Props {
+  placeholderId: string;
+  i18nKey: string;
+  bundle: LocaleBundle;
+  locale?: "en" | "ko";
+}
+
+const { placeholderId, i18nKey, bundle, locale } = Astro.props;
+const text = getString(bundle, i18nKey);
+const fontClass = locale === "ko" ? "font-ko" : "";
+---
+
+<div
+  class={`placeholder-block ${fontClass}`}
+  data-placeholder={placeholderId}
+  aria-label={text}
+>
+  <span class="placeholder-block-icon" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <path d="M9 9h6M9 12h6M9 15h4"/>
+    </svg>
+  </span>
+  <p class={`placeholder-block-text ${fontClass}`}>{text}</p>
+</div>
+
+<style>
+  .placeholder-block {
+    background: var(--color-placeholder-bg);
+    border: 2px dashed var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: center;
+  }
+
+  /* B-08: --color-placeholder-text (#7a8a82) gives 3.26:1 on --color-placeholder-bg (#f0f4f0),
+   * below WCAG AA 4.5:1 for small text. Switch to --color-placeholder-text-accessible (#4a5e55,
+   * ~6.3:1) for both icon and text to satisfy F-08 AC-8. */
+  .placeholder-block-icon {
+    color: var(--color-placeholder-text-accessible);
+  }
+
+  .placeholder-block-text {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-placeholder-text-accessible);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .font-ko .placeholder-block-text,
+  .placeholder-block-text.font-ko {
+    font-family: var(--font-ko);
+  }
+</style>

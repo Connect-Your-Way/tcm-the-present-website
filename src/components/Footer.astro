@@ -1,0 +1,239 @@
+---
+/**
+ * Footer.astro — dark-green site footer (§06 00-layout.md §4)
+ * Three columns (desktop): brand + service area | site links | contact quick-links
+ * Single column (mobile)
+ */
+import type { LocaleBundle } from "../lib/i18n.ts";
+import { getString } from "../lib/i18n.ts";
+import LanguageToggle from "./LanguageToggle.astro";
+
+export interface Props {
+  locale: "en" | "ko";
+  bundle: LocaleBundle;
+  currentPath: string;  // e.g. "/" | "/clinic" | "/about" | "/contact" — passed to LanguageToggle for B-05/B-06
+}
+
+const { locale, bundle, currentPath } = Astro.props;
+const year = new Date().getFullYear();
+const copyright = getString(bundle, "common.footer.copyright").replace("{year}", String(year));
+const serviceArea = getString(bundle, "common.footer.serviceArea");
+const navHome = getString(bundle, "common.nav.home");
+const navClinic = getString(bundle, "common.nav.clinic");
+const navAbout = getString(bundle, "common.nav.about");
+const navContact = getString(bundle, "common.nav.contact");
+const kakaotalkLabel = getString(bundle, "common.footer.kakaotalk");
+const kakaotalkDisabled = getString(bundle, "common.footer.kakaotalkAriaDisabled");
+const linksHeading = getString(bundle, "common.footer.links");
+const contactHeading = getString(bundle, "common.footer.contact");
+
+// Server-rendered env content (import.meta.env in Astro server mode)
+const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined) ?? "+61 4XX XXX XXX";
+const kakaotalkUrl: string = (import.meta.env.KAKAOTALK_URL as string | undefined) ?? "#";
+const isPhonePlaceholder = phoneNumber.includes("4XX");
+const isKakaotalkPlaceholder = kakaotalkUrl === "#";
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+      {/* Column 1 — Brand */}
+      <div class="footer-col">
+        <a class="footer-logo" href={`/${locale}/`}>
+          <span class="logo-text">TCM The Present</span>
+        </a>
+        <p class="service-area">{serviceArea}</p>
+        <p class="copyright">{copyright}</p>
+      </div>
+
+      {/* Column 2 — Site links */}
+      <div class="footer-col">
+        <h3 class="footer-heading">{linksHeading}</h3>
+        <nav aria-label={linksHeading}>
+          <ul class="footer-links">
+            <li><a href={`/${locale}/`}>{navHome}</a></li>
+            <li><a href={`/${locale}/clinic/`}>{navClinic}</a></li>
+            <li><a href={`/${locale}/about/`}>{navAbout}</a></li>
+            <li><a href={`/${locale}/contact/`}>{navContact}</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* Column 3 — Contact quick-links */}
+      <div class="footer-col">
+        <h3 class="footer-heading">{contactHeading}</h3>
+        {isPhonePlaceholder ? (
+          <p class="footer-phone" data-placeholder="phone-number">{phoneNumber}</p>
+        ) : (
+          <a class="footer-phone" href={`tel:${phoneNumber.replace(/\s/g, "")}`}>{phoneNumber}</a>
+        )}
+        {isKakaotalkPlaceholder ? (
+          <button
+            class="btn-kakaotalk"
+            type="button"
+            aria-disabled="true"
+            title={kakaotalkDisabled}
+            data-placeholder="kakaotalk-url"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 3C6.477 3 2 6.477 2 11c0 2.7 1.45 5.09 3.67 6.63L4.5 21l3.86-2.01C9.37 19.31 10.66 19.5 12 19.5c5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/>
+            </svg>
+            {kakaotalkLabel}
+          </button>
+        ) : (
+          <a class="btn-kakaotalk" href={kakaotalkUrl} target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 3C6.477 3 2 6.477 2 11c0 2.7 1.45 5.09 3.67 6.63L4.5 21l3.86-2.01C9.37 19.31 10.66 19.5 12 19.5c5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/>
+            </svg>
+            {kakaotalkLabel}
+          </a>
+        )}
+        <div class="footer-lang-toggle">
+          <LanguageToggle locale={locale} currentPath={currentPath} bundle={bundle} />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-primary-dark);
+    color: var(--color-white);
+    padding: 4rem 0 2.5rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .footer-logo {
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-white);
+  }
+
+  .service-area {
+    font-size: var(--text-body-sm);
+    color: var(--color-accent-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .copyright {
+    font-size: var(--text-body-sm);
+    /* B-04: #5a6573 (--color-text-muted) on #001e2b dark footer = 2.9:1 — fails WCAG AA.
+     * rgba(255,255,255,0.7) ≈ 10:1 on #001e2b — passes. Scoped here so global token unchanged. */
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    color: var(--color-accent-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: var(--text-body-sm);
+    transition: color 0.2s ease;
+  }
+
+  /* B-07 + B-10: footer nav links at 390 px measure 40.8 × 24 px — below 44 × 44 px minimum.
+   * B-07 (iter-2) fixed min-height; B-10 (iter-3) adds min-width so both dimensions satisfy
+   * WCAG 2.5.5 (AA) 44 × 44 px target size. Scoped to mobile to avoid altering desktop layout. */
+  @media (max-width: 767px) {
+    .footer-links a {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  .footer-links a:hover {
+    color: var(--color-accent-light);
+    text-decoration: underline;
+  }
+
+  .footer-phone {
+    display: block;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: var(--text-body-sm);
+    margin-bottom: 1rem;
+  }
+
+  a.footer-phone:hover {
+    color: var(--color-accent-light);
+    text-decoration: underline;
+  }
+
+  .btn-kakaotalk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: #fee500;
+    color: #391b1b;
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    min-height: 44px;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-kakaotalk[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .footer-lang-toggle {
+    margin-top: 1rem;
+  }
+
+  /* Override lang-toggle colours for dark footer */
+  .footer-lang-toggle :global(.lang-btn) {
+    color: var(--color-accent-light);
+  }
+  .footer-lang-toggle :global(.lang-active) {
+    background: rgba(195, 240, 210, 0.2);
+    color: var(--color-accent-light);
+  }
+</style>

@@ -1,0 +1,37 @@
+{
+  "page": {
+    "title": "연락처",
+    "description": "TCM The Present 문의 — 문의 양식, 전화 또는 카카오톡으로 연락해 주세요."
+  },
+  "hero": {
+    "headline": "연락하기",
+    "intro": "아래 양식을 작성하거나 전화 또는 카카오톡으로 문의해 주세요."
+  },
+  "form": {
+    "labelName": "이름",
+    "labelEmail": "이메일",
+    "labelMessage": "메시지",
+    "placeholderName": "성함을 입력해 주세요",
+    "placeholderEmail": "이메일 주소를 입력해 주세요",
+    "placeholderMessage": "어떻게 도와드릴까요?",
+    "submit": "메시지 보내기",
+    "submitting": "전송 중…",
+    "successMessage": "감사합니다! 메시지가 전송되었습니다.",
+    "errorMessage": "오류가 발생했습니다. 다시 시도하거나 직접 연락해 주세요:",
+    "errorRequired": "필수 입력 항목입니다.",
+    "errorTooLong": "입력 내용이 너무 깁니다.",
+    "errorEmail": "유효한 이메일 주소를 입력해 주세요.",
+    "sendAnother": "다시 보내기"
+  },
+  "phone": {
+    "label": "전화하기",
+    "placeholder": "+61 4XX XXX XXX (확인 예정)"
+  },
+  "kakao": {
+    "label": "카카오톡으로 문의",
+    "tooltip": "준비 중"
+  },
+  "serviceArea": {
+    "note": "호주 전역 요양원, 은퇴자 마을, 가정 방문 진료."
+  }
+}

@@ -1,0 +1,556 @@
+---
+/**
+ * ContactForm.astro — contact form island (§06 04-contact.md §4)
+ *
+ * Renders the bilingual contact form with:
+ * - Client-side validation (required, email shape, length caps per §04 §3.1)
+ * - Submit-disable-on-click pattern (§06 §4.5)
+ * - aria-live="polite" on success container (§06 §4.7)
+ * - aria-live="assertive" on error container (§06 §4.8)
+ *
+ * All i18n strings are resolved server-side and injected into the DOM
+ * via data attributes, so the client script reads them without a second
+ * bundle import. Pure HTML + vanilla JS — no UI framework required.
+ */
+
+export interface Props {
+  locale: "en" | "ko";
+  strings: {
+    labelName: string;
+    labelEmail: string;
+    labelMessage: string;
+    placeholderName: string;
+    placeholderEmail: string;
+    placeholderMessage: string;
+    submit: string;
+    submitting: string;
+    successMessage: string;
+    errorMessage: string;
+    errorRequired: string;
+    errorTooLong: string;
+    errorEmail: string;
+    sendAnother: string;
+  };
+}
+
+const { locale, strings } = Astro.props;
+---
+
+<div
+  class="contact-form-wrapper"
+  data-locale={locale}
+  data-strings={JSON.stringify(strings)}
+>
+  <!-- Success state (hidden until POST returns 200) -->
+  <div
+    class="form-success"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  >
+    <div class="form-success-inner">
+      <span class="form-success-icon" aria-hidden="true">✅</span>
+      <p class="form-success-message">{strings.successMessage}</p>
+      <button class="form-success-reset" type="button">
+        {strings.sendAnother}
+      </button>
+    </div>
+  </div>
+
+  <!-- Error state (hidden until POST fails) -->
+  <div
+    class="form-error-banner"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    hidden
+  >
+    <span class="form-error-icon" aria-hidden="true">⚠️</span>
+    <p class="form-error-message">{strings.errorMessage}</p>
+  </div>
+
+  <!-- The form itself -->
+  <form
+    class="contact-form"
+    method="POST"
+    action="/api/contact"
+    novalidate
+  >
+    <!-- Name field -->
+    <div class="field">
+      <label class="field-label" for="contact-name">{strings.labelName}</label>
+      <input
+        class="field-input"
+        type="text"
+        id="contact-name"
+        name="name"
+        required
+        maxlength="100"
+        placeholder={strings.placeholderName}
+        autocomplete="name"
+        aria-describedby="name-error"
+      />
+      <span
+        class="field-error"
+        id="name-error"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></span>
+    </div>
+
+    <!-- Email field -->
+    <div class="field">
+      <label class="field-label" for="contact-email">{strings.labelEmail}</label>
+      <input
+        class="field-input"
+        type="email"
+        id="contact-email"
+        name="email"
+        required
+        maxlength="254"
+        placeholder={strings.placeholderEmail}
+        autocomplete="email"
+        aria-describedby="email-error"
+      />
+      <span
+        class="field-error"
+        id="email-error"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></span>
+    </div>
+
+    <!-- Message field -->
+    <div class="field">
+      <label class="field-label" for="contact-message">{strings.labelMessage}</label>
+      <textarea
+        class="field-input field-textarea"
+        id="contact-message"
+        name="message"
+        required
+        maxlength="2000"
+        rows="5"
+        placeholder={strings.placeholderMessage}
+        aria-describedby="message-error"
+      ></textarea>
+      <span
+        class="field-error"
+        id="message-error"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></span>
+    </div>
+
+    <!-- Submit button -->
+    <button
+      class="submit-btn"
+      type="submit"
+    >
+      <span class="submit-label">{strings.submit}</span>
+      <span class="submit-loading" aria-hidden="true" hidden>
+        <svg class="submit-spinner" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" />
+        </svg>
+        {strings.submitting}
+      </span>
+    </button>
+  </form>
+</div>
+
+<script>
+  /**
+   * ContactForm client-side handler.
+   * Runs eagerly on page load (Astro hoists <script> to module-level).
+   * Reads i18n strings from the data-strings attribute to avoid a second import.
+   */
+
+  type FormStrings = {
+    errorRequired: string;
+    errorTooLong: string;
+    errorEmail: string;
+  };
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function initContactForm(wrapper: HTMLElement): void {
+    let strings: FormStrings;
+    try {
+      strings = JSON.parse(wrapper.dataset["strings"] ?? "{}") as FormStrings;
+    } catch {
+      // Malformed data-strings — fall back to English literals so the form
+      // remains functional even if server-side injection fails.
+      strings = { errorRequired: "This field is required.", errorTooLong: "This field is too long.", errorEmail: "Please enter a valid email address." };
+    }
+
+    const form = wrapper.querySelector<HTMLFormElement>(".contact-form");
+    const successPanel = wrapper.querySelector<HTMLElement>(".form-success");
+    const errorBanner = wrapper.querySelector<HTMLElement>(".form-error-banner");
+    const submitBtn = wrapper.querySelector<HTMLButtonElement>(".submit-btn");
+    const submitLabel = wrapper.querySelector<HTMLElement>(".submit-label");
+    const submitLoading = wrapper.querySelector<HTMLElement>(".submit-loading");
+    const resetBtn = wrapper.querySelector<HTMLButtonElement>(".form-success-reset");
+
+    if (!form || !successPanel || !errorBanner || !submitBtn) return;
+
+    /** Show a field-level error; return false (for early exit chaining). */
+    function fieldError(fieldId: string, message: string): false {
+      const errorEl = wrapper.querySelector<HTMLElement>(`#${fieldId}-error`);
+      const inputEl = wrapper.querySelector<HTMLInputElement | HTMLTextAreaElement>(`#contact-${fieldId}`);
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.removeAttribute("hidden");
+      }
+      if (inputEl) {
+        inputEl.setAttribute("aria-invalid", "true");
+        inputEl.classList.add("field-input--error");
+      }
+      return false;
+    }
+
+    /** Clear a field-level error. */
+    function clearFieldError(fieldId: string): void {
+      const errorEl = wrapper.querySelector<HTMLElement>(`#${fieldId}-error`);
+      const inputEl = wrapper.querySelector<HTMLElement>(`#contact-${fieldId}`);
+      if (errorEl) {
+        errorEl.textContent = "";
+        errorEl.setAttribute("hidden", "");
+      }
+      if (inputEl) {
+        inputEl.removeAttribute("aria-invalid");
+        inputEl.classList.remove("field-input--error");
+      }
+    }
+
+    /** Clear all field errors. */
+    function clearAllErrors(): void {
+      ["name", "email", "message"].forEach(clearFieldError);
+      errorBanner!.setAttribute("hidden", "");
+    }
+
+    /** Client-side validation — mirrors §04 §3.1. Returns true if valid. */
+    function validateForm(): boolean {
+      clearAllErrors();
+      let valid = true;
+
+      const name = (form!.querySelector<HTMLInputElement>("#contact-name")?.value ?? "").trim();
+      if (!name) valid = fieldError("name", strings.errorRequired);
+      else if (name.length > 100) valid = fieldError("name", strings.errorTooLong);
+
+      const email = (form!.querySelector<HTMLInputElement>("#contact-email")?.value ?? "").trim();
+      if (!email) valid = fieldError("email", strings.errorRequired) && valid;
+      else if (!EMAIL_RE.test(email)) valid = fieldError("email", strings.errorEmail) && valid;
+
+      const message = (form!.querySelector<HTMLTextAreaElement>("#contact-message")?.value ?? "").trim();
+      if (!message) valid = fieldError("message", strings.errorRequired) && valid;
+      else if (message.length > 2000) valid = fieldError("message", strings.errorTooLong) && valid;
+
+      return valid;
+    }
+
+    /** Set submit button to loading/idle state. */
+    function setLoading(loading: boolean): void {
+      submitBtn!.disabled = loading;
+      if (loading) {
+        submitLabel?.setAttribute("hidden", "");
+        submitLoading?.removeAttribute("hidden");
+      } else {
+        submitLabel?.removeAttribute("hidden");
+        submitLoading?.setAttribute("hidden", "");
+      }
+    }
+
+    /** Reset form to initial idle state (for "Send another message"). */
+    function resetForm(): void {
+      form!.reset();
+      clearAllErrors();
+      successPanel!.setAttribute("hidden", "");
+      form!.removeAttribute("hidden");
+      setLoading(false);
+    }
+
+    // ── Blur validation (per-field feedback on focus-out) ────────────────────
+    ["name", "email", "message"].forEach((id) => {
+      const el = form!.querySelector(`#contact-${id}`);
+      el?.addEventListener("blur", () => {
+        // Re-validate just this field on blur by running the full check
+        // and ignoring other field errors.
+        if (id === "name") {
+          const val = (el as HTMLInputElement).value.trim();
+          clearFieldError("name");
+          if (!val) fieldError("name", strings.errorRequired);
+          else if (val.length > 100) fieldError("name", strings.errorTooLong);
+        } else if (id === "email") {
+          const val = (el as HTMLInputElement).value.trim();
+          clearFieldError("email");
+          if (!val) fieldError("email", strings.errorRequired);
+          else if (!EMAIL_RE.test(val)) fieldError("email", strings.errorEmail);
+        } else if (id === "message") {
+          const val = (el as HTMLTextAreaElement).value.trim();
+          clearFieldError("message");
+          if (!val) fieldError("message", strings.errorRequired);
+          else if (val.length > 2000) fieldError("message", strings.errorTooLong);
+        }
+      });
+    });
+
+    // ── Form submission handler ───────────────────────────────────────────────
+    form.addEventListener("submit", async (e: Event) => {
+      e.preventDefault();
+      if (!validateForm()) return;
+
+      setLoading(true);
+
+      const name = (form.querySelector<HTMLInputElement>("#contact-name")?.value ?? "").trim();
+      const email = (form.querySelector<HTMLInputElement>("#contact-email")?.value ?? "").trim();
+      const message = (form.querySelector<HTMLTextAreaElement>("#contact-message")?.value ?? "").trim();
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message }),
+        });
+
+        const data = await res.json() as { ok: boolean; code?: string };
+
+        if (data.ok) {
+          // Success — show confirmation, hide form
+          form.setAttribute("hidden", "");
+          successPanel!.removeAttribute("hidden");
+        } else {
+          // Server error — show error banner, re-enable submit
+          errorBanner!.removeAttribute("hidden");
+          setLoading(false);
+        }
+      } catch {
+        // Network failure
+        errorBanner!.removeAttribute("hidden");
+        setLoading(false);
+      }
+    });
+
+    // ── "Send another message" button ─────────────────────────────────────────
+    resetBtn?.addEventListener("click", resetForm);
+  }
+
+  // Initialise all contact form wrappers on the page
+  function init(): void {
+    document.querySelectorAll<HTMLElement>(".contact-form-wrapper").forEach(initContactForm);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .contact-form-wrapper {
+    width: 100%;
+  }
+
+  /* ── Success panel ─────────────────────────────────────────────────── */
+  .form-success {
+    background: var(--color-accent-subtle);
+    border: 1.5px solid var(--color-success);
+    border-radius: 12px;
+    padding: var(--space-2xl);
+    text-align: center;
+  }
+
+  .form-success[hidden] {
+    display: none;
+  }
+
+  .form-success-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .form-success-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .form-success-message {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-lg);
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+
+  .form-success-reset {
+    padding: 0.625rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background 0.2s ease;
+  }
+
+  .form-success-reset:hover,
+  .form-success-reset:focus-visible {
+    background: var(--color-primary-mid);
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+  }
+
+  /* ── Error banner ──────────────────────────────────────────────────── */
+  .form-error-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    background: #fef2f2;
+    border: 1.5px solid var(--color-error);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .form-error-banner[hidden] {
+    display: none;
+  }
+
+  .form-error-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+
+  .form-error-message {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-error);
+    font-weight: 500;
+  }
+
+  /* ── Form fields ───────────────────────────────────────────────────── */
+  .contact-form[hidden] {
+    display: none;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .field-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+
+  .field-input {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-text-body);
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-white);
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 104, 74, 0.15);
+  }
+
+  .field-input--error {
+    border-color: var(--color-error);
+  }
+
+  .field-input--error:focus {
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .field-error {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sm);
+    color: var(--color-error);
+    font-weight: 500;
+  }
+
+  .field-error[hidden] {
+    display: none;
+  }
+
+  /* ── Submit button ─────────────────────────────────────────────────── */
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 0.875rem 2rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 160px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: var(--color-primary-mid);
+    border-color: var(--color-primary-mid);
+  }
+
+  .submit-btn:focus-visible {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .submit-loading[hidden] {
+    display: none;
+  }
+
+  .submit-loading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .submit-spinner {
+    width: 18px;
+    height: 18px;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+</style>

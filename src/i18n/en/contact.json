@@ -1,0 +1,37 @@
+{
+  "page": {
+    "title": "Contact",
+    "description": "Contact TCM The Present — get in touch via the contact form, phone, or KakaoTalk."
+  },
+  "hero": {
+    "headline": "Get in Touch",
+    "intro": "We'd love to hear from you. Fill in the form below, call us, or reach out via KakaoTalk."
+  },
+  "form": {
+    "labelName": "Name",
+    "labelEmail": "Email",
+    "labelMessage": "Message",
+    "placeholderName": "Your full name",
+    "placeholderEmail": "your@email.com",
+    "placeholderMessage": "How can we help?",
+    "submit": "Send Message",
+    "submitting": "Sending…",
+    "successMessage": "Thank you! Your message has been sent.",
+    "errorMessage": "Something went wrong. Please try again or contact us directly:",
+    "errorRequired": "This field is required.",
+    "errorTooLong": "This field is too long.",
+    "errorEmail": "Please enter a valid email address.",
+    "sendAnother": "Send another message"
+  },
+  "phone": {
+    "label": "Call us",
+    "placeholder": "+61 4XX XXX XXX (to be confirmed)"
+  },
+  "kakao": {
+    "label": "KakaoTalk",
+    "tooltip": "Coming soon"
+  },
+  "serviceArea": {
+    "note": "Serving nursing homes, retirement villages, and private homes across Australia."
+  }
+}

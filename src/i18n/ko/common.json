@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "TCM The Present",
+    "tagline": "모바일 한의원 서비스"
+  },
+  "nav": {
+    "clinic": "진료 소개",
+    "about": "원장 소개",
+    "contact": "연락처",
+    "home": "홈",
+    "ariaLabel": "메인 내비게이션"
+  },
+  "header": {
+    "logoAriaLabel": "TCM The Present — 홈",
+    "contactCta": "문의하기",
+    "skipToMain": "본문으로 건너뛰기",
+    "openMenu": "내비게이션 메뉴 열기",
+    "closeMenu": "내비게이션 메뉴 닫기"
+  },
+  "languageToggle": {
+    "switchToKorean": "한국어로 전환",
+    "switchToEnglish": "영어로 전환",
+    "en": "EN",
+    "ko": "KO",
+    "ariaLabel": "언어 선택"
+  },
+  "footer": {
+    "serviceArea": "호주 전역 요양원, 은퇴자 마을, 가정 방문 진료.",
+    "copyright": "© {year} TCM The Present. All rights reserved.",
+    "kakaotalk": "카카오톡으로 문의",
+    "kakaotalkAriaDisabled": "카카오톡 — 준비 중",
+    "links": "사이트 링크",
+    "contact": "연락처"
+  }
+}

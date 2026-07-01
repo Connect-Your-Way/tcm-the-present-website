@@ -1,0 +1,80 @@
+---
+/**
+ * TreatmentCard.astro — treatment area card primitive (S3 §3.4)
+ * Renders the label and description in the active locale.
+ * Used in the Clinic page (×7).
+ */
+
+export interface Props {
+  nameEn: string;
+  nameKo: string;
+  descEn: string;
+  descKo: string;
+  activeLocale: "en" | "ko";
+  iconSlot?: boolean;
+}
+
+const { nameEn, nameKo, descEn, descKo, activeLocale } = Astro.props;
+const name = activeLocale === "ko" ? nameKo : nameEn;
+const desc = activeLocale === "ko" ? descKo : descEn;
+const fontClass = activeLocale === "ko" ? "font-ko" : "";
+---
+
+<article class={`treatment-card ${fontClass}`}>
+  <div class="treatment-card-icon" aria-hidden="true">
+    <slot name="icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    </slot>
+  </div>
+  <h3 class={`treatment-card-name ${fontClass}`}>{name}</h3>
+  <p class={`treatment-card-desc ${fontClass}`}>{desc}</p>
+</article>
+
+<style>
+  .treatment-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .treatment-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 104, 74, 0.1);
+  }
+
+  .treatment-card-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .treatment-card-name {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    line-height: 1.25;
+  }
+
+  .font-ko .treatment-card-name,
+  .treatment-card-name.font-ko {
+    font-family: var(--font-ko);
+  }
+
+  .treatment-card-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-text-body);
+    line-height: 1.65;
+  }
+
+  .font-ko .treatment-card-desc,
+  .treatment-card-desc.font-ko {
+    font-family: var(--font-ko);
+  }
+</style>

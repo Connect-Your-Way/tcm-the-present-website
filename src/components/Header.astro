@@ -1,0 +1,189 @@
+---
+/**
+ * Header.astro — sticky site header (§06 00-layout.md §3)
+ * Desktop: logo + primary nav + phone pill + Contact CTA + language toggle
+ * Mobile: logo + phone pill + hamburger menu
+ * Purely server-rendered; HamburgerMenu has a small client:visible JS island.
+ */
+import type { LocaleBundle } from "../lib/i18n.ts";
+import { getString } from "../lib/i18n.ts";
+import LanguageToggle from "./LanguageToggle.astro";
+import PhonePill from "./PhonePill.astro";
+import HamburgerMenu from "./HamburgerMenu.astro";
+
+export interface Props {
+  locale: "en" | "ko";
+  currentPath: string;
+  bundle: LocaleBundle;
+}
+
+const { locale, currentPath, bundle } = Astro.props;
+const logoLabel = getString(bundle, "common.header.logoAriaLabel");
+const contactCta = getString(bundle, "common.header.contactCta");
+const navLabel = getString(bundle, "common.nav.ariaLabel");
+const navClinic = getString(bundle, "common.nav.clinic");
+const navAbout = getString(bundle, "common.nav.about");
+const navContact = getString(bundle, "common.nav.contact");
+
+// Read phone number from env (server-rendered content — import.meta.env in Astro server mode)
+const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined) ?? "+61 4XX XXX XXX";
+---
+
+<header class="site-header">
+  <div class="container inner">
+    {/* Logo / wordmark */}
+    <a class="site-logo" href={`/${locale}/`} aria-label={logoLabel}>
+      <span class="logo-text">TCM The Present</span>
+    </a>
+
+    {/* Desktop primary navigation */}
+    <nav class="desktop-nav" aria-label={navLabel}>
+      <ul>
+        <li>
+          <a
+            href={`/${locale}/clinic/`}
+            aria-current={currentPath === "/clinic" ? "page" : undefined}
+          >{navClinic}</a>
+        </li>
+        <li>
+          <a
+            href={`/${locale}/about/`}
+            aria-current={currentPath === "/about" ? "page" : undefined}
+          >{navAbout}</a>
+        </li>
+        <li>
+          <a
+            href={`/${locale}/contact/`}
+            aria-current={currentPath === "/contact" ? "page" : undefined}
+          >{navContact}</a>
+        </li>
+      </ul>
+    </nav>
+
+    {/* Desktop right cluster */}
+    <div class="header-actions">
+      <PhonePill phoneNumber={phoneNumber} />
+      <a class="btn-contact-cta" href={`/${locale}/contact/`}>
+        {contactCta}
+      </a>
+      <LanguageToggle locale={locale} currentPath={currentPath} bundle={bundle} />
+    </div>
+
+    {/* Mobile: phone pill + hamburger */}
+    <div class="mobile-actions">
+      <PhonePill phoneNumber={phoneNumber} />
+      <HamburgerMenu locale={locale} currentPath={currentPath} bundle={bundle} />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 2px 12px rgba(0, 30, 43, 0.07);
+    height: 72px;
+    display: flex;
+    align-items: center;
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .site-logo {
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+
+  .desktop-nav {
+    flex: 1;
+  }
+
+  .desktop-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .desktop-nav a {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--color-text-heading);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .desktop-nav a:hover,
+  .desktop-nav a[aria-current="page"] {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .btn-contact-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    min-height: 44px;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+
+  .btn-contact-cta:hover {
+    background: var(--color-primary-mid);
+    color: var(--color-white);
+  }
+
+  .mobile-actions {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      height: 60px;
+    }
+
+    .desktop-nav,
+    .header-actions {
+      display: none;
+    }
+
+    .mobile-actions {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,24 @@
+{
+  "page": {
+    "title": "진료 소개",
+    "description": "TCM The Present 진료 서비스 — 노인 요양 시설 및 은퇴자 마을 방문 한의 치료."
+  },
+  "hero": {
+    "eyebrow": "진료 서비스",
+    "headline": "당신에게 찾아가는 치료",
+    "subheadline": "호주 전역 요양원, 은퇴자 마을, 가정 방문 전문 한의 치료.",
+    "cta": "문의하기",
+    "imageAlt": "한방 의사가 노인 환자를 방문하여 치료하는 모습"
+  },
+  "intro": {
+    "heading": "진료 소개"
+  },
+  "treatments": {
+    "heading": "진료 분야",
+    "subheading": "7가지 전문 분야에 걸친 종합 치료"
+  },
+  "cta": {
+    "sentence": "가정 방문 한의 치료의 차별점을 경험해 보시겠어요?",
+    "buttonLabel": "지금 문의하기"
+  }
+}

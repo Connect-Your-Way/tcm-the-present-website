@@ -1,0 +1,101 @@
+---
+/**
+ * Layout.astro — single shared layout for all 8 routes (§06 00-layout.md)
+ * Renders: <head> (meta + hreflang + fonts + CSS) + <Header> + <main> slot + <Footer>
+ * ADR-003: tokens.css imported once here; every component uses var(--token-name).
+ */
+import "../styles/tokens.css";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { loadLocaleBundle, getString } from "../lib/i18n.ts";
+
+export interface Props {
+  title: string;          // pre-resolved from i18n by the page module
+  description: string;
+  locale: "en" | "ko";
+  currentPath: string;    // e.g. "/" | "/clinic" | "/about" | "/contact"
+}
+
+const { title, description, locale, currentPath } = Astro.props;
+const bundle = loadLocaleBundle(locale);
+const siteName = "TCM The Present";
+// SITE_URL: set in .env.local / production secrets (see .env.example).
+// Falls back to localhost:3001 for local dev; do not use import of env.ts here
+// (that would run requireEnv() on secret vars during static prerender — see env.ts header).
+const canonicalBase = ((import.meta.env.SITE_URL as string | undefined) ?? "http://localhost:3001").replace(/\/$/, "");
+// Build the per-locale alternates — currentPath is the slug without locale prefix
+const slug = currentPath === "/" ? "" : currentPath;
+const enHref = `/en${slug}/`;
+const koHref = `/ko${slug}/`;
+const canonicalHref = `${canonicalBase}/${locale}${slug}/`;
+const skipLabel = getString(bundle, "common.header.skipToMain");
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} — {siteName}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalHref} />
+
+    <!-- hreflang alternates (F-01 AC-7, §06 00-layout.md §2) -->
+    <link rel="alternate" hreflang="en" href={`${canonicalBase}${enHref}`} />
+    <link rel="alternate" hreflang="ko" href={`${canonicalBase}${koHref}`} />
+    <link rel="alternate" hreflang="x-default" href={`${canonicalBase}${enHref}`} />
+
+    <!-- Google Fonts: locale-conditional load (B-13 fix — EN pages skip Noto Sans KR
+         to avoid the cross-origin Korean font penalty on routes that don't use it).
+         KO pages load the full set including Noto Sans KR.
+         Async font loading pattern: media="print" trick loads the CSS non-blocking
+         so it does not delay FCP/LCP — the font-display:swap in the CSS handles FOUT.
+         Spec ref: F-08 AC-8 (mobile Lighthouse performance ≥ 90 on all 8 routes). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {locale === "ko" ? (
+      <>
+        {/* Async-load Noto Sans KR CSS so it does not block render on KO pages.
+            onload swaps media from "print" to "all" once the CSS has downloaded. */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+          rel="stylesheet"
+          media="print"
+          onload="this.onload=null;this.media='all'"
+        />
+        <noscript>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet"
+          />
+        </noscript>
+      </>
+    ) : (
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    )}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <!-- Skip-to-main link (a11y — GUIDELINE.md §8) -->
+    <!-- TC-NEW-01: tabindex="0" added to ensure WebKit includes the link in the tab order even
+         when the sr-only class clips the element visually. Without explicit tabindex, WebKit
+         may skip focusable-but-clipped elements in some timing scenarios. -->
+    <a href="#main-content" class="sr-only" tabindex="0">{skipLabel}</a>
+
+    <Header locale={locale} currentPath={currentPath} bundle={bundle} />
+
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer locale={locale} bundle={bundle} currentPath={currentPath} />
+  </body>
+</html>

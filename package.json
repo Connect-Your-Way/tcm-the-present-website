@@ -1,0 +1,37 @@
+{
+  "name": "tcm-the-present",
+  "version": "0.1.0",
+  "description": "TCM The Present — bilingual Traditional Chinese Medicine marketing site (EN/KO)",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "node --experimental-strip-types scripts/check-i18n-parity.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
+    "test:lighthouse": "node scripts/lighthouse-audit.mjs",
+    "typecheck": "astro check && tsc --noEmit"
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.3.0",
+    "astro": "^4.16.0",
+    "resend": "4.8.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.45.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "lighthouse": "^13.4.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "TCM The Present",
+    "tagline": "Mobile Traditional Chinese Medicine"
+  },
+  "nav": {
+    "clinic": "Clinic",
+    "about": "About",
+    "contact": "Contact",
+    "home": "Home",
+    "ariaLabel": "Main navigation"
+  },
+  "header": {
+    "logoAriaLabel": "TCM The Present — Home",
+    "contactCta": "Contact Us",
+    "skipToMain": "Skip to main content",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu"
+  },
+  "languageToggle": {
+    "switchToKorean": "Switch to Korean",
+    "switchToEnglish": "Switch to English",
+    "en": "EN",
+    "ko": "KO",
+    "ariaLabel": "Select language"
+  },
+  "footer": {
+    "serviceArea": "Visiting nursing homes, retirement villages, and homes across Australia.",
+    "copyright": "© {year} TCM The Present. All rights reserved.",
+    "kakaotalk": "Contact via KakaoTalk",
+    "kakaotalkAriaDisabled": "KakaoTalk — coming soon",
+    "links": "Site Links",
+    "contact": "Contact"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "page": {
+    "title": "About",
+    "description": "Meet Dr Zacc Kim — Traditional Chinese Medicine practitioner and founder of TCM The Present."
+  },
+  "hero": {
+    "eyebrow": "About the Practitioner",
+    "headline": "김한수 원장 (Zacc Kim), TCM Practitioner",
+    "intro": "Zacc brings specialist Traditional Chinese Medicine care directly to nursing homes, retirement villages, and family homes across Australia — combining over ten years of clinical experience with genuine compassion for every patient."
+  },
+  "portrait": {
+    "heading": "The Practitioner"
+  },
+  "bio": {
+    "heading": "Personal Story"
+  },
+  "qualifications": {
+    "heading": "Qualifications"
+  },
+  "philosophy": {
+    "heading": "Clinical Philosophy",
+    "body_1": "Traditional Chinese Medicine (TCM) is founded on the principles of Yin–Yang and the Five Elements. In its simplest form, these principles can be understood as a theory of balance.",
+    "body_2": "Just as the natural world exists through the harmony of its fundamental elements, the human body also depends on balance. The body's organs and physiological systems work together in harmony, with Yin and Yang maintaining a dynamic equilibrium. When this balance is disrupted, the body begins to send signals—such as pain, fatigue, digestive problems, insomnia, or other symptoms. These symptoms are not merely problems to suppress; they are important clues that reveal where the body's balance has been disturbed.",
+    "body_3": "In Traditional Chinese Medicine, every symptom provides valuable information. By carefully listening to the patient, observing the body, and understanding the pattern behind the symptoms, we seek to identify the root cause of the imbalance rather than simply treating its outward manifestations. Acupuncture and herbal medicine are then used to help restore the body's natural balance and support its own healing ability.",
+    "body_4": "For this reason, I do not believe in giving up on a patient simply because a condition is difficult or long-standing. Every illness has a cause, and my role is to search for that cause and find the most appropriate way to help the body recover its balance. I believe this is one of the greatest strengths of Traditional Chinese Medicine: it never stops looking for a path toward healing.",
+    "body_5": "Yet knowledge and technical skill alone are not enough. A practitioner must also have genuine compassion for every patient. Without sincere care, even the greatest knowledge and the most advanced techniques cannot fully understand what a patient truly needs. Without compassion, it is impossible to bring peace and confidence to a person who is suffering.",
+    "body_6": "Meaningful healing begins with genuine communication. Sometimes the true cause of an illness cannot be discovered without understanding the person's life, experiences, emotions, and concerns. The more deeply we understand the patient, the more accurately we can identify the source of the problem.",
+    "body_7": "Compassion allows us to listen more carefully, understand more deeply, and never give up on those who seek our help. Throughout more than ten years of clinical practice, I have learned one lesson above all others: the two most important ingredients in healing are a practitioner's commitment to never giving up on finding a solution and a sincere love and respect for every patient. These principles continue to guide every treatment I provide."
+  },
+  "profilePhoto": {
+    "altPlaceholder": "Photo of 김한수 원장 — coming soon",
+    "altReady": "Photo of 김한수 원장"
+  },
+  "cta": {
+    "sentence": "Ready to book a consultation? We'd love to hear from you.",
+    "buttonLabel": "Contact Us Today"
+  }
+}

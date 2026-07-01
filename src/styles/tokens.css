@@ -1,0 +1,74 @@
+/* ─── TCM The Present — Design Tokens ──────────────────────────────────────
+ * ADR-003: CSS custom properties are the integration seam between
+ * the engineering track and the ui-ux-designer track (GUIDELINE.md §11).
+ * Layout.astro imports this file ONCE; all components use var(--token-name).
+ * No hard-coded colour or font-size values anywhere else in src/.
+ * Source: GUIDELINE.md §11 (canonical generated reference), F-07 colour spec.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Colours: Primary greens ─── */
+  --color-primary: #00684a;
+  --color-primary-dark: #001e2b;
+  --color-primary-mid: #00a35c;
+
+  /* ── Colours: Accent greens ─── */
+  --color-accent: #00ed64;
+  --color-accent-light: #c3f0d2;
+  --color-accent-subtle: #edf2e2;
+
+  /* ── Colours: Neutrals and text ─── */
+  --color-bg: #faf9f3;
+  --color-bg-alt: #edf2e2;
+  --color-text-heading: #001e2b;
+  --color-text-body: #3d4a52;
+  --color-text-muted: #5a6573;
+  --color-white: #ffffff;
+  --color-border: #d8e8dc;
+
+  /* ── Colours: Semantic / status ─── */
+  --color-star: #f4b400;
+  --color-error: #c0392b;
+  --color-success: #00684a;
+  --color-placeholder-bg: #f0f4f0;
+  --color-placeholder-text: #7a8a82;
+  /* Accessible variant for small text on --color-placeholder-bg (#f0f4f0): ~6.3:1 ratio (WCAG AA). */
+  --color-placeholder-text-accessible: #4a5e55;
+
+  /* ── Fonts ─── */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-ko: "Noto Sans KR", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* ── Type scale (fluid, desktop → mobile via clamp) ─── */
+  --text-hero: clamp(2.375rem, 5vw, 3.75rem);
+  --text-h1: clamp(2.125rem, 4.5vw, 3.25rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 2.5rem);
+  --text-h3: clamp(1.375rem, 2vw, 1.625rem);
+  --text-eyebrow: 0.8125rem;
+  --text-body-xl: clamp(1.25rem, 1.8vw, 1.375rem);
+  --text-body-lg: clamp(1.125rem, 1.5vw, 1.1875rem);
+  --text-body: clamp(1.0625rem, 1.2vw, 1.125rem);
+  --text-body-sm: clamp(0.875rem, 1vw, 0.9375rem);
+  --text-ui: 1rem;
+
+  /* ── Spacing ─── */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+}
+
+/* Reduce motion for users who prefer it (GUIDELINE.md §6) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

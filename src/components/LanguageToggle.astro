@@ -1,0 +1,79 @@
+---
+/**
+ * LanguageToggle.astro — EN/KO toggle with per-locale URL links (§06 00-layout.md §3.5)
+ * Active locale is visually highlighted; inactive locale links to the equivalent page.
+ * Per the engineering spec (MILESTONES.md M01 AC, §06 §3.5), the toggle changes the URL.
+ */
+import type { LocaleBundle } from "../lib/i18n.ts";
+import { getString, loadLocaleBundle } from "../lib/i18n.ts";
+
+export interface Props {
+  locale: "en" | "ko";
+  currentPath: string;    // slug without locale prefix, e.g. "/" | "/clinic"
+  bundle: LocaleBundle;
+}
+
+const { locale, currentPath, bundle } = Astro.props;
+const slug = currentPath === "/" ? "" : currentPath;
+const enHref = `/en${slug}/`;
+const koHref = `/ko${slug}/`;
+// B-09: switchToKoLabel must be in Korean (the target language); switchToEnLabel must be in
+// English (the target language). When on the KO page, bundle is the KO bundle — so
+// switchToEnLabel would resolve to the KO translation of "Switch to English", which fails
+// WCAG 2.1 G149 (link purpose must be identifiable in destination language).
+// Fix: always load target-language bundles directly so each label reads in its own locale.
+const enBundle = loadLocaleBundle("en");
+const koBundle = loadLocaleBundle("ko");
+const switchToKoLabel = getString(koBundle, "common.languageToggle.switchToKorean");
+const switchToEnLabel = getString(enBundle, "common.languageToggle.switchToEnglish");
+const ariaLabel = getString(bundle, "common.languageToggle.ariaLabel");
+---
+
+<div class="lang-toggle" role="group" aria-label={ariaLabel}>
+  {locale === "en" ? (
+    <span class="lang-btn lang-active" aria-current="true">EN</span>
+  ) : (
+    <a class="lang-btn" href={enHref} aria-label={switchToEnLabel}>EN</a>
+  )}
+  <span class="lang-divider" aria-hidden="true">/</span>
+  {locale === "ko" ? (
+    <span class="lang-btn lang-active" aria-current="true">KO</span>
+  ) : (
+    <a class="lang-btn" href={koHref} aria-label={switchToKoLabel}>KO</a>
+  )}
+</div>
+
+<style>
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+  }
+  .lang-btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .lang-btn:hover {
+    background: var(--color-accent-light);
+    color: var(--color-primary);
+  }
+  .lang-active {
+    background: var(--color-accent-light);
+    color: var(--color-primary);
+    cursor: default;
+  }
+  .lang-divider {
+    color: var(--color-text-muted);
+  }
+</style>

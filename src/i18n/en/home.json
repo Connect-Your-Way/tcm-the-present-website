@@ -1,0 +1,27 @@
+{
+  "page": {
+    "title": "Home",
+    "description": "TCM The Present — Mobile Traditional Chinese Medicine visiting nursing homes, retirement villages, and homes across Australia."
+  },
+  "hero": {
+    "eyebrow": "Traditional Chinese Medicine · Mobile Practice",
+    "headline": "Expert TCM Care, Brought to Your Door",
+    "subheadline": "Zacc Kim visits nursing homes, retirement villages, and homes across Australia — bringing traditional care to those who need it most.",
+    "ctaPrimary": "Contact Us",
+    "ctaSecondary": "Learn More",
+    "imageAlt": "TCM practitioner with elderly patient receiving care at home"
+  },
+  "socialProof": {
+    "stars": "5 out of 5 stars",
+    "statement": "Trusted by patients and families across Australian aged-care communities."
+  },
+  "cases": {
+    "heading": "Clinical Cases",
+    "subheading": "Real outcomes from our mobile practice",
+    "koPlaceholderLabel": "Clinical Cases (Korean translation coming soon)"
+  },
+  "testimonials": {
+    "heading": "What Patients Are Saying",
+    "demoNote": "Demo testimonials — real patient stories coming soon"
+  }
+}

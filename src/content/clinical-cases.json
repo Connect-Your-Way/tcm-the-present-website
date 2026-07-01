@@ -1,0 +1,51 @@
+[
+  {
+    "id": "parkinsons-support",
+    "titleEn": "Parkinson's Disease Support",
+    "summaryEn": "A patient with Parkinson's disease presented with severe drooling and intermittent hand tremors. Following acupuncture and herbal medicine treatment, excessive drooling ceased and hand tremors showed noticeable improvement.",
+    "titleKo": "파킨슨병 지원",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  },
+  {
+    "id": "bladder-cancer-support",
+    "titleEn": "Supportive Care for Bladder Cancer",
+    "summaryEn": "A patient with Stage III bladder cancer suffering from severe lower abdominal pain received acupuncture three times weekly with herbal medicine. After five weeks of combined treatment, pain had completely resolved and the patient was able to undergo chemotherapy without difficulty.",
+    "titleKo": "방광암 지원 치료",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  },
+  {
+    "id": "breast-cancer-support",
+    "titleEn": "Supportive Care During Breast Cancer Treatment",
+    "summaryEn": "A patient undergoing chemotherapy for recurrent breast cancer experienced profound fatigue. After four weeks of acupuncture twice weekly with herbal medicine, the patient reported marked improvement in energy and resumed normal daily activities.",
+    "titleKo": "유방암 치료 중 지원 치료",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  },
+  {
+    "id": "multiple-sclerosis-support",
+    "titleEn": "Supportive Care for Multiple Sclerosis",
+    "summaryEn": "A patient with MS experiencing frequent severe leg cramps undertook two months of acupuncture and herbal medicine. Cramp frequency and severity gradually decreased and eventually resolved, eliminating the need for high-dose magnesium supplementation.",
+    "titleKo": "다발성 경화증 지원 치료",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  },
+  {
+    "id": "upper-back-pain",
+    "titleEn": "Upper Back Pain & Scapular Asymmetry",
+    "summaryEn": "A patient presented with upper back pain associated with asymmetrical scapular alignment. After four weeks of acupuncture twice weekly, back pain completely resolved and scapular alignment showed significant improvement.",
+    "titleKo": "상부 요통 및 견갑골 비대칭",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  },
+  {
+    "id": "womens-health",
+    "titleEn": "Women's Health — Atrophic Vaginitis",
+    "summaryEn": "A patient with Atrophic Vaginitis suffering from persistent vaginal pain and daily bleeding received two months of herbal medicine. Treatment resulted in complete relief from pain and significant reduction in bleeding.",
+    "titleKo": "여성 건강 — 위축성 질염",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  },
+  {
+    "id": "atrial-fibrillation-support",
+    "titleEn": "Supportive Care for Atrial Fibrillation",
+    "summaryEn": "A patient with Atrial Fibrillation experiencing recurrent fainting episodes received weekly acupuncture for 12 weeks. Following the course of treatment, no further episodes were reported and overall well-being improved noticeably.",
+    "titleKo": "심방세동 지원 치료",
+    "summaryKo": "임상 사례 (한국어 번역 준비 중)"
+  }
+]

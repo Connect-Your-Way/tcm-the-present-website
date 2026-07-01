@@ -1,0 +1,110 @@
+---
+/**
+ * BlobImage.astro — blob-frame image primitive (S3 §3.4)
+ * Renders an image inside an organic blob-shaped SVG clip.
+ * When placeholder=true, renders a styled placeholder fill instead of an image.
+ */
+
+export interface Props {
+  src?: string;
+  alt: string;
+  blobVariant: 1 | 2 | 3;
+  placeholder?: boolean;
+}
+
+const { src, alt, blobVariant = 1, placeholder = false } = Astro.props;
+
+// SVG clip paths for 3 blob variants
+const blobPaths: Record<number, string> = {
+  1: "M50,5 C70,2 90,15 95,35 C100,55 90,75 75,87 C60,99 35,102 18,90 C1,78 -5,55 5,33 C15,11 30,8 50,5 Z",
+  2: "M55,3 C75,0 95,12 97,32 C99,52 88,72 70,84 C52,96 28,99 13,85 C-2,71 -3,47 8,27 C19,7 35,6 55,3 Z",
+  3: "M48,6 C68,1 92,14 96,38 C100,62 85,80 68,90 C51,100 28,100 14,86 C0,72 -2,48 10,28 C22,8 28,11 48,6 Z",
+};
+---
+
+<div class={`blob-image blob-image--${blobVariant}`} aria-hidden={placeholder ? "true" : undefined}>
+  <svg
+    class="blob-svg"
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <defs>
+      <clipPath id={`blob-clip-${blobVariant}-${Math.random().toString(36).slice(2, 7)}`}>
+        <path d={blobPaths[blobVariant]} />
+      </clipPath>
+    </defs>
+  </svg>
+  {placeholder ? (
+    <div class="blob-placeholder" aria-label={alt}>
+      <svg class="blob-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <span class="sr-only">{alt}</span>
+    </div>
+  ) : src ? (
+    <img
+      src={src}
+      alt={alt}
+      class="blob-img"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : null}
+</div>
+
+<style>
+  .blob-image {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  }
+
+  .blob-image--1 {
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  }
+
+  .blob-image--2 {
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+  }
+
+  .blob-image--3 {
+    border-radius: 50% 50% 45% 55% / 45% 55% 45% 55%;
+  }
+
+  .blob-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .blob-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .blob-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-placeholder-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+
+  .blob-placeholder-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-placeholder-text);
+  }
+</style>

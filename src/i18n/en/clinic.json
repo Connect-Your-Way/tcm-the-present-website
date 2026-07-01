@@ -1,0 +1,24 @@
+{
+  "page": {
+    "title": "Clinic",
+    "description": "TCM The Present clinic services — mobile home-visit Traditional Chinese Medicine for aged care and retirement facilities."
+  },
+  "hero": {
+    "eyebrow": "Our Services",
+    "headline": "Care That Comes to You",
+    "subheadline": "Specialised TCM for nursing homes, retirement villages, and home visits across Australia.",
+    "cta": "Make an Enquiry",
+    "imageAlt": "TCM practitioner providing home-visit care to an elderly patient"
+  },
+  "intro": {
+    "heading": "Clinic Introduction"
+  },
+  "treatments": {
+    "heading": "Treatment Areas",
+    "subheading": "Comprehensive care across 7 specialty areas"
+  },
+  "cta": {
+    "sentence": "Ready to experience the difference of in-home TCM care?",
+    "buttonLabel": "Contact Us Today"
+  }
+}

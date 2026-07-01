@@ -1,0 +1,29 @@
+# Local secrets — never committed
+.env
+.env.local
+.env.production
+
+# Test output
+test-results/
+playwright-report/
+
+# Internal agent-pipeline state (not website components)
+consulting/
+inputs/
+workflows/
+client_requirements/
+PROJECT.md
+
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Editor
+.DS_Store
+.vscode/settings.json
+
+# Coverage
+coverage/

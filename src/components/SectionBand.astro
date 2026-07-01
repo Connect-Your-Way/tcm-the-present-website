@@ -1,0 +1,38 @@
+---
+/**
+ * SectionBand.astro — full-width band primitive (S3 §3.4)
+ * Used for: social proof, CTA strips, section dividers.
+ */
+
+export interface Props {
+  background: "soft" | "accent" | "cream";
+}
+
+const { background } = Astro.props;
+---
+
+<section class={`section-band section-band--${background}`}>
+  <div class="container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section-band {
+    width: 100%;
+    padding: var(--space-xl) 0;
+  }
+
+  .section-band--soft {
+    background: var(--color-accent-light);
+  }
+
+  .section-band--accent {
+    background: var(--color-primary-mid);
+    color: var(--color-white);
+  }
+
+  .section-band--cream {
+    background: var(--color-bg-alt);
+  }
+</style>

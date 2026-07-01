@@ -1,0 +1,81 @@
+---
+/**
+ * CaseCard.astro — clinical case card primitive (S3 §3.4)
+ * Used in the Home page Clinical Cases section (×7).
+ * On /ko/ locale, renders a styled Korean placeholder label per F-09 / M02 AC.
+ */
+
+export interface Props {
+  title: string;
+  summary: string;
+  activeLocale: "en" | "ko";
+  koPlaceholderLabel?: string;
+}
+
+const {
+  title,
+  summary,
+  activeLocale,
+  koPlaceholderLabel = "임상 사례 (한국어 번역 준비 중)",
+} = Astro.props;
+---
+
+<article class="case-card">
+  <div class="case-card-icon" aria-hidden="true">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
+      <path d="M12 8v4l3 3"/>
+    </svg>
+  </div>
+  <h3 class="case-card-title">{title}</h3>
+  <p class="case-card-summary">{summary}</p>
+  {activeLocale === "ko" && (
+    <span class="ko-placeholder-label">{koPlaceholderLabel}</span>
+  )}
+</article>
+
+<style>
+  .case-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .case-card-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .case-card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    line-height: 1.25;
+  }
+
+  .case-card-summary {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-text-body);
+    line-height: 1.65;
+    flex-grow: 1;
+  }
+
+  .ko-placeholder-label {
+    display: inline-block;
+    font-family: var(--font-ko);
+    font-size: var(--text-body-sm);
+    /* Use accessible token: #4a5e55 on #f0f4f0 gives ~6.3:1 (WCAG AA ≥ 4.5:1). */
+    color: var(--color-placeholder-text-accessible);
+    background: var(--color-placeholder-bg);
+    border: 1.5px dashed var(--color-border);
+    border-radius: 6px;
+    padding: var(--space-xs) var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+</style>

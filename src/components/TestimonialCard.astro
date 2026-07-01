@@ -1,0 +1,257 @@
+---
+/**
+ * TestimonialCard.astro — accordion testimonial card (S3 §3.3, §3.4)
+ * client:idle island — hydrates only when browser is idle (below the fold).
+ * Implements the disclosure pattern with aria-expanded + aria-controls.
+ */
+
+export interface Props {
+  name: string;
+  summary: string;
+  fullText: string;
+  cardId: string;
+  isPlaceholder?: boolean;
+}
+
+const { name, summary, fullText, cardId, isPlaceholder = false } = Astro.props;
+const fullId = `testimonial-full-${cardId}`;
+const triggerId = `testimonial-trigger-${cardId}`;
+---
+
+<article class={`testimonial-card${isPlaceholder ? " testimonial-card--placeholder" : ""}`} data-card-id={cardId}>
+  {isPlaceholder && (
+    <span class="testimonial-placeholder-badge" aria-label="Demo placeholder">Demo</span>
+  )}
+  <button
+    class="testimonial-trigger"
+    id={triggerId}
+    aria-expanded="false"
+    aria-controls={fullId}
+    type="button"
+  >
+    <div class="testimonial-header">
+      <div class="testimonial-meta">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          {Array.from({ length: 5 }).map(() => (
+            <svg class="tstar" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+        <span class="testimonial-name">{name}</span>
+      </div>
+      <span class="testimonial-summary">{summary}</span>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </button>
+  <div
+    class="testimonial-full"
+    id={fullId}
+    role="region"
+    aria-labelledby={triggerId}
+    hidden
+  >
+    <p class="testimonial-full-text">{fullText}</p>
+    <button class="testimonial-close" type="button" aria-label="Close testimonial">
+      Close / 닫기
+    </button>
+  </div>
+</article>
+
+<script>
+  // Accordion hydration — progressive enhancement
+  function initTestimonialCards() {
+    const cards = document.querySelectorAll<HTMLElement>(".testimonial-card");
+    cards.forEach((card) => {
+      const trigger = card.querySelector<HTMLButtonElement>(".testimonial-trigger");
+      const full = card.querySelector<HTMLElement>(".testimonial-full");
+      const closeBtn = card.querySelector<HTMLButtonElement>(".testimonial-close");
+      const chevron = trigger?.querySelector<SVGElement>(".chevron");
+
+      if (!trigger || !full) return;
+
+      function expand() {
+        trigger!.setAttribute("aria-expanded", "true");
+        full!.removeAttribute("hidden");
+        chevron?.style.setProperty("transform", "rotate(180deg)");
+      }
+
+      function collapse() {
+        trigger!.setAttribute("aria-expanded", "false");
+        full!.setAttribute("hidden", "");
+        chevron?.style.setProperty("transform", "");
+        trigger!.focus();
+      }
+
+      trigger.addEventListener("click", () => {
+        const expanded = trigger.getAttribute("aria-expanded") === "true";
+        expanded ? collapse() : expand();
+      });
+
+      // Esc from anywhere inside the card collapses it and returns focus to the trigger
+      // (F-06 AC: "Esc collapses an open card and returns focus to the summary trigger").
+      // Listener is on the card (article) so it fires whether focus is on the trigger
+      // or on the in-card Close button.
+      card.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Escape" && trigger.getAttribute("aria-expanded") === "true") {
+          collapse();
+        }
+      });
+
+      closeBtn?.addEventListener("click", collapse);
+    });
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTestimonialCards);
+  } else {
+    initTestimonialCards();
+  }
+</script>
+
+<style>
+  .testimonial-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .testimonial-card--placeholder {
+    opacity: 0.9;
+  }
+
+  .testimonial-placeholder-badge {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    background: var(--color-bg);
+  }
+
+  .testimonial-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xl);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-align: left;
+    min-height: 44px;
+  }
+
+  .testimonial-trigger:hover {
+    background: var(--color-bg-alt);
+  }
+
+  .testimonial-trigger:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+
+  .testimonial-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+  }
+
+  .testimonial-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .tstar {
+    width: 16px;
+    height: 16px;
+    color: var(--color-star);
+  }
+
+  .testimonial-name {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+
+  .testimonial-summary {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-text-body);
+    line-height: 1.55;
+  }
+
+  .chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+    margin-top: 2px;
+  }
+
+  .testimonial-full {
+    padding: 0 var(--space-xl) var(--space-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .testimonial-full[hidden] {
+    display: none;
+  }
+
+  .testimonial-full-text {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-text-body);
+    line-height: 1.7;
+    padding-top: var(--space-lg);
+  }
+
+  .testimonial-close {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-lg);
+    padding: var(--space-sm) var(--space-md);
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sm);
+    color: var(--color-text-muted);
+    min-height: 44px;
+  }
+
+  .testimonial-close:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-bg-alt);
+  }
+
+  .testimonial-close:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+</style>

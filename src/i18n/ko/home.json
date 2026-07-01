@@ -1,0 +1,27 @@
+{
+  "page": {
+    "title": "홈",
+    "description": "TCM The Present — 호주 전역 요양원, 은퇴자 마을, 가정 방문 한의 치료 서비스."
+  },
+  "hero": {
+    "eyebrow": "한의학 · 방문 진료",
+    "headline": "전문 한의 치료, 이제 찾아갑니다",
+    "subheadline": "김한수 원장은 호주 전역 요양원, 은퇴자 마을, 개인 가정으로 찾아가 가장 필요한 분들께 전통 한의 치료를 제공합니다.",
+    "ctaPrimary": "문의하기",
+    "ctaSecondary": "자세히 보기",
+    "imageAlt": "가정에서 노인 환자에게 한의 치료를 제공하는 한의사"
+  },
+  "socialProof": {
+    "stars": "5점 만점 5점",
+    "statement": "호주 전역 노인 요양 시설의 환자와 가족들이 신뢰하는 한의원."
+  },
+  "cases": {
+    "heading": "임상 사례",
+    "subheading": "방문 진료의 실제 치료 결과",
+    "koPlaceholderLabel": "임상 사례 (한국어 번역 준비 중)"
+  },
+  "testimonials": {
+    "heading": "환자 후기",
+    "demoNote": "데모 환자 후기 — 실제 환자 이야기가 곧 추가될 예정입니다"
+  }
+}

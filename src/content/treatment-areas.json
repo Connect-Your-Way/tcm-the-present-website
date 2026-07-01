@@ -1,0 +1,51 @@
+[
+  {
+    "id": "womens-health",
+    "labelEn": "Women's Health",
+    "labelKo": "한방 부인과",
+    "descriptionEn": "Specialised care for menstrual disorders, uterine conditions, fertility support, menopausal symptoms, and urinary incontinence.",
+    "descriptionKo": "생리관련질환, 자궁질환, 불임치료 서포트, 폐경기 질환들, 요실금 등 여성 건강을 전문적으로 치료합니다."
+  },
+  {
+    "id": "dermatology",
+    "labelEn": "Dermatology",
+    "labelKo": "한방 피부과",
+    "descriptionEn": "Traditional Chinese medicine approaches to atopic dermatitis (eczema), allergic skin conditions, and excessive sweating of the hands and feet.",
+    "descriptionKo": "아토피 피부염, 알러지성 피부 질환, 손발의 땀 과다 등을 한방으로 치료합니다."
+  },
+  {
+    "id": "internal-medicine",
+    "labelEn": "Internal Medicine",
+    "labelKo": "한방 내과",
+    "descriptionEn": "Treatment for cold hands and feet, anaemia, digestive disorders, immune system support, energy restoration, and supportive care during cancer treatment.",
+    "descriptionKo": "수족냉증, 빈혈, 소화기 질환, 면역력 증진, 원기회복과 식욕증진, 항암치료 서포트 등 내과 질환을 다룹니다."
+  },
+  {
+    "id": "paediatrics",
+    "labelEn": "Paediatrics",
+    "labelKo": "한방 소아과",
+    "descriptionEn": "Supporting children's health through growth and developmental delays, bedwetting (nocturnal enuresis), and recurrent colds.",
+    "descriptionKo": "성장·발육 지연, 야뇨증, 잦은 감기 등 소아 건강 문제를 한방으로 지원합니다."
+  },
+  {
+    "id": "urology",
+    "labelEn": "Urology",
+    "labelKo": "한방 비뇨기과",
+    "descriptionEn": "Care for urinary disorders, urinary tract infections (UTIs), and overactive bladder using traditional Chinese medicine.",
+    "descriptionKo": "소변장애, 요로감염, 과민성 방광 등 비뇨기 질환을 한방으로 치료합니다."
+  },
+  {
+    "id": "pain-management",
+    "labelEn": "Pain Management",
+    "labelKo": "한방 통증의학",
+    "descriptionEn": "Effective relief for acute and chronic pain, cancer-related pain, and neuralgia (nerve pain) using acupuncture and other TCM techniques.",
+    "descriptionKo": "급·만성 통증, 암성 통증, 신경통을 침술 등 한방 기법으로 효과적으로 치료합니다."
+  },
+  {
+    "id": "geriatric-care",
+    "labelEn": "Geriatric Care",
+    "labelKo": "한방 노인과",
+    "descriptionEn": "Specialised TCM for elderly patients in aged-care settings: chronic pain, chronic cough, mobility difficulties, reduced vitality, and rehabilitation support.",
+    "descriptionKo": "만성 통증, 만성 기침, 보행 불편, 체력 저하, 재활 관리 등 노인 환자를 위한 전문 한방 치료를 요양 시설에서 제공합니다."
+  }
+]

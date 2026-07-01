@@ -1,0 +1,170 @@
+---
+/**
+ * HamburgerMenu.astro — mobile navigation drawer (§06 00-layout.md §3.6)
+ * client:visible directive: hydrates only when visible (mobile screens).
+ * Focus trap while open; Esc closes the drawer.
+ * Rendered by Header.astro; slotted inside the mobile header area.
+ */
+import type { LocaleBundle } from "../lib/i18n.ts";
+import { getString } from "../lib/i18n.ts";
+import LanguageToggle from "./LanguageToggle.astro";
+
+export interface Props {
+  locale: "en" | "ko";
+  currentPath: string;
+  bundle: LocaleBundle;
+}
+
+const { locale, currentPath, bundle } = Astro.props;
+const slug = currentPath === "/" ? "" : currentPath;
+const openLabel = getString(bundle, "common.header.openMenu");
+const closeLabel = getString(bundle, "common.header.closeMenu");
+const contactCta = getString(bundle, "common.header.contactCta");
+const navClinic = getString(bundle, "common.nav.clinic");
+const navAbout = getString(bundle, "common.nav.about");
+const navContact = getString(bundle, "common.nav.contact");
+---
+
+<div class="hamburger-wrapper">
+  <button
+    class="hamburger-btn"
+    id="hamburger-btn"
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+    aria-label={openLabel}
+    type="button"
+  >
+    <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+    <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="display:none">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label={getString(bundle, "common.nav.ariaLabel")} hidden>
+    <ul>
+      <li><a href={`/${locale}/clinic/`} aria-current={currentPath === "/clinic" ? "page" : undefined}>{navClinic}</a></li>
+      <li><a href={`/${locale}/about/`} aria-current={currentPath === "/about" ? "page" : undefined}>{navAbout}</a></li>
+      <li><a href={`/${locale}/contact/`} aria-current={currentPath === "/contact" ? "page" : undefined}>{navContact}</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <LanguageToggle locale={locale} currentPath={currentPath} bundle={bundle} />
+      <a class="btn-primary" href={`/${locale}/contact/`}>{contactCta}</a>
+    </div>
+  </nav>
+</div>
+
+<script>
+  const btn = document.getElementById("hamburger-btn") as HTMLButtonElement | null;
+  const nav = document.getElementById("mobile-nav") as HTMLElement | null;
+  if (btn && nav) {
+    const iconMenu = btn.querySelector(".icon-menu") as HTMLElement | null;
+    const iconClose = btn.querySelector(".icon-close") as HTMLElement | null;
+
+    function openNav(): void {
+      nav!.hidden = false;
+      btn!.setAttribute("aria-expanded", "true");
+      if (iconMenu) iconMenu.style.display = "none";
+      if (iconClose) iconClose.style.display = "";
+    }
+
+    function closeNav(): void {
+      nav!.hidden = true;
+      btn!.setAttribute("aria-expanded", "false");
+      if (iconMenu) iconMenu.style.display = "";
+      if (iconClose) iconClose.style.display = "none";
+      btn!.focus();
+    }
+
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      isOpen ? closeNav() : openNav();
+    });
+
+    // Esc closes the drawer
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+        closeNav();
+      }
+    });
+  }
+</script>
+
+<style>
+  .hamburger-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--color-text-heading);
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger-btn {
+      display: flex;
+    }
+  }
+
+  .mobile-nav {
+    position: fixed;
+    inset: 60px 0 0 0;
+    background: var(--color-white);
+    z-index: 99;
+    padding: 1.5rem 1.25rem;
+    overflow-y: auto;
+  }
+
+  .mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-nav ul a {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: var(--text-body-lg);
+    font-weight: 600;
+    color: var(--color-text-heading);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-nav ul a[aria-current="page"] {
+    color: var(--color-primary);
+  }
+
+  .mobile-nav-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    min-height: 44px;
+    transition: background 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-mid);
+    color: var(--color-white);
+  }
+</style>

@@ -1,0 +1,8 @@
+---
+/**
+ * src/pages/index.astro — root redirect to /en/ (§07 Flow 1, F-01 AC-1)
+ * Server-side 302; no prerender = true (server-rendered by the Node adapter).
+ * No meta-refresh, no JS redirect — pure HTTP 302 per spec.
+ */
+return Astro.redirect("/en/", 302);
+---
