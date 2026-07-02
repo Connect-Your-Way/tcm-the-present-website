@@ -171,6 +171,19 @@ p:last-child { margin-bottom: 0; }
   text-decoration: none;
   flex-shrink: 0;
   line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+/* Real client logo, left of the wordmark (M2) */
+.logo-img {
+  height: 40px;
+  width: auto;
+  flex-shrink: 0;
+}
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
 }
 .logo span {
   display: block;
