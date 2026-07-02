@@ -711,6 +711,31 @@ li.ko-only { display: none; }
   width: 100%;
   justify-content: center;
 }
+/* Instagram button — sky-blue chip, muted mauve text/icon (Instagram purple, healthcare-toned).
+   Matches Kakao button box model. Disabled / coming-soon feel via opacity. */
+.instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--color-accent-subtle);   /* #F0F9FF — same pale sky used across site */
+  color: #6B52A0;                            /* muted Instagram purple — legible on pale bg (6.2:1) */
+  border: 2px solid #E1306C;  /* Instagram pink outline */
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-body-sm);
+  text-decoration: none;
+  cursor: not-allowed;
+  opacity: 0.75;
+  width: 100%;
+  justify-content: center;
+  transition: opacity var(--transition-fast);
+}
+.instagram-btn:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  opacity: 1;
+}
 .form-success {
   background: #E6F4FB;
   border: 1.5px solid var(--color-success);
@@ -780,6 +805,16 @@ li.ko-only { display: none; }
   transition: color var(--transition-fast);
 }
 .footer-col a:hover { color: var(--color-accent-light); text-decoration: underline; }
+/* Lock Instagram button in the footer — beats .footer-col a { color } and :hover overrides.
+   Mirrors sidebar treatment: same pale-sky chip on the navy background (pale bg pops on #0A2540). */
+.footer-col a.instagram-btn,
+.footer-col a.instagram-btn:hover {
+  color: #6B52A0;
+  background: var(--color-accent-subtle);
+  border: 2px solid #E1306C;
+  text-decoration: none;
+  opacity: 0.75;
+}
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.12);
   padding-top: 28px;
