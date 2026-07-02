@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical Case Library — TCM The Present · UI Design Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="corrections.css">
+  <!-- Apply language preference before DOM renders (prevents flash of wrong language) -->
+  <script>try{var _l=localStorage.getItem('tcm-lang')||'en';document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}catch(e){}</script>
+  <style>
+    .disclaimer-block {
+      background: var(--color-bg-alt);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-top: var(--space-2xl);
+    }
+    .disclaimer-block h3 {
+      font-size: var(--text-body);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .disclaimer-block p {
+      font-size: var(--text-body-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+<!-- Skip link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ── HEADER ─────────────────────────────────────────────── -->
+<header class="site-header" role="banner">
+  <div class="container inner">
+    <a href="home.html" class="logo" aria-label="TCM The Present — Home">
+      <img class="logo-img" src="logo.png" alt="" aria-hidden="true">
+      <div class="logo-text-group">TCM The Present<span>선물 한의원</span></div>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav">
+        <li><a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
+        <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+        <li><a href="clinical-cases.html" aria-current="page"><span class="en-only">Clinical Case Library</span><span class="ko-only">임상 사례</span></a></li>
+        <li><a href="journal.html"><span class="en-only">The Present Journal</span><span class="ko-only">선물 저널</span></a></li>
+        <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <!-- Language toggle — buttons (GUIDELINE.md §12) -->
+      <div class="lang-toggle" role="group" aria-label="Select language">
+        <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+      </div>
+      <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" id="hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Navigation menu" aria-modal="true">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a>
+    <a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a>
+    <a href="clinical-cases.html"><span class="en-only">Clinical Case Library</span><span class="ko-only">임상 사례</span></a>
+    <a href="journal.html"><span class="en-only">The Present Journal</span><span class="ko-only">선물 저널</span></a>
+    <a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a>
+    <div class="lang-toggle" style="margin-top:16px" role="group" aria-label="Select language">
+      <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+      <span class="lang-divider">/</span>
+      <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+<main id="main-content">
+
+  <!-- ╔═══════ EN PAGE HERO ═══════╗ -->
+  <section class="hero page-hero en-only" aria-labelledby="cases-hero-en">
+    <div class="container">
+      <div class="hero-text" style="max-width:640px">
+        <span class="eyebrow">Patient Outcomes</span>
+        <h1 id="cases-hero-en">Clinical Case Library</h1>
+        <p class="subheadline">An overview of real treatment outcomes from Han Soo Kim's mobile TCM practice across nursing homes, retirement villages, and private homes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔═══════ KO PAGE HERO ═══════╗ -->
+  <section class="hero page-hero ko-only" aria-labelledby="cases-hero-ko">
+    <div class="container">
+      <div class="hero-text" style="max-width:640px">
+        <span class="eyebrow">환자 치료 결과</span>
+        <h1 id="cases-hero-ko">임상 사례</h1>
+        <p class="subheadline">김한수 원장의 요양원, 은퇴 마을, 자택 방문 진료에서 나온 실제 치료 결과 모음입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE CARDS -->
+  <section class="page-section" style="background:var(--color-bg-alt)" aria-labelledby="cases-list-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h2 id="cases-list-heading">
+          <span class="en-only">Case Studies</span>
+          <span class="ko-only">사례 연구</span>
+        </h2>
+        <p>
+          <span class="en-only">Click any case to read the full detail.</span>
+          <span class="ko-only">각 사례를 클릭하면 전문을 확인하실 수 있습니다.</span>
+        </p>
+      </div>
+      <div class="testimonials-list" role="list">
+
+        <!-- Placeholder case 1 -->
+        <div class="accordion-card" role="listitem">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="case-body-1" id="case-btn-1">
+            <div class="accordion-trigger-text">
+              <span class="accordion-name">
+                <span class="en-only">[Placeholder — Case 1 title added in M4]</span>
+                <span class="ko-only">[임시 표시 — M4에서 사례 1 제목 추가 예정]</span>
+              </span>
+              <span class="accordion-summary-line">
+                <span class="en-only">Real case 1 of 7 from the clinical case DOCX — to be added in M4.</span>
+                <span class="ko-only">임상 사례 7건 중 첫 번째 — M4에서 추가 예정.</span>
+              </span>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body" id="case-body-1" role="region" aria-labelledby="case-btn-1">
+            <p class="en-only">[Placeholder — Case 1 full detail added in M4] Real case content will be extracted from the client-provided DOCX and appear here.</p>
+            <p class="ko-only">[임시 표시 — M4에서 사례 1 전문 추가 예정] 고객 제공 DOCX에서 실제 사례 내용이 추출되어 여기에 표시될 예정입니다.</p>
+            <button class="accordion-close"><span class="en-only">Close</span><span class="ko-only">닫기</span> ✕</button>
+          </div>
+        </div>
+
+        <!-- Placeholder case 2 -->
+        <div class="accordion-card" role="listitem">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="case-body-2" id="case-btn-2">
+            <div class="accordion-trigger-text">
+              <span class="accordion-name">
+                <span class="en-only">[Placeholder — Case 2 title added in M4]</span>
+                <span class="ko-only">[임시 표시 — M4에서 사례 2 제목 추가 예정]</span>
+              </span>
+              <span class="accordion-summary-line">
+                <span class="en-only">Real case 2 of 7 from the clinical case DOCX — to be added in M4.</span>
+                <span class="ko-only">임상 사례 7건 중 두 번째 — M4에서 추가 예정.</span>
+              </span>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body" id="case-body-2" role="region" aria-labelledby="case-btn-2">
+            <p class="en-only">[Placeholder — Case 2 full detail added in M4]</p>
+            <p class="ko-only">[임시 표시 — M4에서 사례 2 전문 추가 예정]</p>
+            <button class="accordion-close"><span class="en-only">Close</span><span class="ko-only">닫기</span> ✕</button>
+          </div>
+        </div>
+
+        <!-- Placeholder case 3 -->
+        <div class="accordion-card" role="listitem">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="case-body-3" id="case-btn-3">
+            <div class="accordion-trigger-text">
+              <span class="accordion-name">
+                <span class="en-only">[Placeholder — Case 3 title added in M4]</span>
+                <span class="ko-only">[임시 표시 — M4에서 사례 3 제목 추가 예정]</span>
+              </span>
+              <span class="accordion-summary-line">
+                <span class="en-only">Real case 3 of 7 from the clinical case DOCX — to be added in M4.</span>
+                <span class="ko-only">임상 사례 7건 중 세 번째 — M4에서 추가 예정.</span>
+              </span>
+            </div>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body" id="case-body-3" role="region" aria-labelledby="case-btn-3">
+            <p class="en-only">[Placeholder — Case 3 full detail added in M4]</p>
+            <p class="ko-only">[임시 표시 — M4에서 사례 3 전문 추가 예정]</p>
+            <button class="accordion-close"><span class="en-only">Close</span><span class="ko-only">닫기</span> ✕</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DISCLAIMER BLOCK -->
+      <aside class="disclaimer-block" aria-label="Clinical disclaimer">
+        <h3>
+          <span class="en-only">Disclaimer</span>
+          <span class="ko-only">면책 조항</span>
+        </h3>
+        <p class="en-only">[Disclaimer — clinical cases are for information only and do not constitute medical advice. Individual results may vary. Finalised disclaimer wording to be confirmed in M4.]</p>
+        <p class="ko-only">[면책 조항 — 임상 사례는 정보 제공 목적으로만 제공되며 의학적 조언을 구성하지 않습니다. 개인적인 결과는 다를 수 있습니다. 최종 면책 조항 문구는 M4에서 확정될 예정입니다.]</p>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip cta-strip--green" aria-label="Contact call to action">
+    <div class="container">
+      <p>
+        <span class="en-only">Interested in TCM care? We'd love to speak with you.</span>
+        <span class="ko-only">한의학 치료에 관심이 있으신가요? 언제든지 연락 주세요.</span>
+      </p>
+      <a href="contact.html" class="btn btn-white">
+        <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand -->
+      <div class="footer-col">
+        <a href="home.html" class="footer-logo">TCM The Present</a>
+        <p class="footer-tagline">
+          <span class="en-only">Visiting nursing homes, retirement villages, and homes Sydney and Canberra.</span>
+          <span class="ko-only">전국 요양원, 은퇴 마을, 자택을 방문하는 한의원입니다.</span>
+        </p>
+      </div>
+      <!-- Col 2: Site links -->
+      <div class="footer-col">
+        <h4><span class="en-only">Navigation</span><span class="ko-only">메뉴</span></h4>
+        <ul>
+          <li><a href="home.html"><span class="en-only">Home</span><span class="ko-only">홈</span></a></li>
+          <li><a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
+          <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+          <li><a href="clinical-cases.html"><span class="en-only">Clinical Case Library</span><span class="ko-only">임상 사례</span></a></li>
+          <li><a href="journal.html"><span class="en-only">The Present Journal</span><span class="ko-only">선물 저널</span></a></li>
+          <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+        </ul>
+      </div>
+      <!-- Col 3: Contact + language toggle -->
+      <div class="footer-col">
+        <h4><span class="en-only">Contact</span><span class="ko-only">연락처</span></h4>
+        <p style="color:var(--color-accent-light);font-size:var(--text-body-sm)">+61 4XX XXX XXX <span class="en-only">(to be confirmed)</span><span class="ko-only">(확인 예정)</span></p>
+        <a href="#" class="kakao-btn" aria-disabled="true" title="KakaoTalk link coming soon" style="margin-top:8px;display:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C7.03 3 3 6.36 3 10.5c0 2.75 1.77 5.16 4.43 6.55-.19.71-.71 2.59-.81 2.99 0 0-.01.08.04.11.05.03.11 0 .11 0 .14-.02 3.32-2.18 3.73-2.46.48.07.98.11 1.5.11 4.97 0 9-3.36 9-7.5S16.97 3 12 3z"/></svg>
+          <span class="en-only">KakaoTalk (Coming soon)</span>
+          <span class="ko-only">카카오톡으로 문의 (준비 중)</span>
+        </a>
+        <a href="#" class="instagram-btn" aria-disabled="true" title="Instagram coming soon" style="margin-top:8px;display:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span class="en-only">Instagram (Coming soon)</span>
+          <span class="ko-only">인스타그램 (준비 중)</span>
+        </a>
+        <div class="footer-lang-toggle" style="margin-top:16px">
+          <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+          <span style="color:rgba(255,255,255,0.3);padding:0 4px">/</span>
+          <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">한국어</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TCM The Present. <span class="en-only">All rights reserved.</span><span class="ko-only">모든 권리 보유.</span></p>
+      <p>Web design by <a href="https://connectyourway.au" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5)">CYW</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+  // ── Accordion ──────────────────────────────────────────────
+  document.querySelectorAll('.accordion-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.accordion-card');
+      const isOpen = card.classList.contains('is-open');
+      card.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+  document.querySelectorAll('.accordion-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.accordion-card');
+      const trigger = card.querySelector('.accordion-trigger');
+      card.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.focus();
+    });
+  });
+
+  // ── Mobile nav ─────────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn  = document.getElementById('mobile-nav-close');
+
+  function openNav() { mobileNav.classList.add('is-open'); hamburger.setAttribute('aria-expanded','true'); closeBtn.focus(); }
+  function closeNav() { mobileNav.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); hamburger.focus(); }
+  hamburger?.addEventListener('click', openNav);
+  closeBtn?.addEventListener('click', closeNav);
+  mobileNav?.addEventListener('click', e => { if (e.target === mobileNav) closeNav(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+</body>
+</html>

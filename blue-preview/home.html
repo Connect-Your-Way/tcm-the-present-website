@@ -12,28 +12,6 @@
   <link rel="stylesheet" href="corrections.css">
   <!-- Apply language preference before DOM renders (prevents flash of wrong language) -->
   <script>try{var _l=localStorage.getItem('tcm-lang')||'en';document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}catch(e){}</script>
-  <style>
-    .section-cases { background: var(--color-white); }
-    .section-testimonials { background: var(--color-bg-alt); }
-    /* Testimonial star ratings */
-    .testimonial-stars { display: flex; gap: 2px; margin-bottom: 8px; }
-    .testimonial-stars .tstar { width: 16px; height: 16px; fill: var(--color-star); }
-    .accordion-name { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .testimonial-badge {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; color: var(--color-text-muted);
-      border: 1px solid var(--color-border); border-radius: 4px;
-      padding: 1px 6px; flex-shrink: 0;
-    }
-    .testimonial-badge--demo { color: var(--color-text-muted); border-color: var(--color-border); }
-    .section-heading .demo-note {
-      display: inline-block; margin-top: 8px;
-      font-size: var(--text-body-sm); color: var(--color-text-muted);
-      background: var(--color-white); border: 1px solid var(--color-border);
-      border-radius: 6px; padding: 4px 12px;
-      font-style: italic;
-    }
-  </style>
 </head>
 <body>
 <!-- Skip link -->
@@ -50,7 +28,8 @@
       <ul class="site-nav">
         <li><a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
         <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
-        <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+        <li><a href="clinical-cases.html"><span class="en-only">Clinical Case Library</span><span class="ko-only">임상 사례</span></a></li>
+        <li><a href="journal.html"><span class="en-only">The Present Journal</span><span class="ko-only">선물 저널</span></a></li>
         <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
       </ul>
     </nav>
@@ -74,17 +53,14 @@
     <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">✕</button>
     <a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a>
     <a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a>
-    <a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a>
+    <a href="clinical-cases.html"><span class="en-only">Clinical Case Library</span><span class="ko-only">임상 사례</span></a>
+    <a href="journal.html"><span class="en-only">The Present Journal</span><span class="ko-only">선물 저널</span></a>
     <a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a>
     <div class="lang-toggle" style="margin-top:16px" role="group" aria-label="Select language">
       <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
       <span class="lang-divider">/</span>
       <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
     </div>
-    <a href="contact.html" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center">
-      <span class="en-only">Contact Us</span>
-      <span class="ko-only">문의하기</span>
-    </a>
   </div>
 </div>
 
@@ -164,181 +140,84 @@
     </div>
   </section>
 
-  <!-- CLINICAL CASES (cards are bilingual by design — h3 EN + .lang-alt KO) -->
-  <section class="page-section section-cases" aria-labelledby="cases-heading">
+  <!-- TREATMENT AREAS (moved from clinic.html) -->
+  <section class="page-section" style="background:var(--color-bg-alt)" aria-labelledby="treatments-heading">
     <div class="container">
       <div class="section-heading">
-        <h2 id="cases-heading">
-          <span class="en-only">Clinical Cases</span>
-          <span class="ko-only">진료 사례</span>
+        <h2 id="treatments-heading">
+          <span class="en-only">Treatment Areas</span>
+          <span class="ko-only">진료 분야</span>
         </h2>
         <p>
-          <span class="en-only">Real treatment outcomes from Han Soo Kim's practice across nursing homes, retirement villages, and private homes.</span>
-          <span class="ko-only">김한수 원장의 요양원, 은퇴 마을, 자택 방문 진료 실제 치료 결과입니다.</span>
+          <span class="en-only">Bilingual treatment listings — final content from client. Placeholder names shown below.</span>
+          <span class="ko-only">진료 분야 목록 — 최종 내용은 고객 제공 예정입니다.</span>
         </p>
       </div>
       <div class="card-grid">
+        <!-- Each card shows EN primary h3 + KO lang-alt always (bilingual-by-design pattern) -->
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 6v6l4 2"/></svg>
-          <h3><span class="en-only">Chronic Lower Back Pain</span><span class="ko-only">만성 요통</span></h3>
-          <p><span class="en-only">A 78-year-old resident at a Bundoora nursing home with a 12-year history of lumbar degeneration. After 8 acupuncture sessions over 4 weeks, pain scores reduced from 7/10 to 2/10 and mobility improved significantly.</span><span class="ko-only">번두라 요양원 거주 78세 환자, 12년 요추 퇴행 병력. 4주간 8회 침 치료 후 통증 7→2/10 감소, 이동성 개선.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3><span class="en-only">Acupuncture</span><span class="ko-only">침술</span></h3>
+          <span class="lang-alt en-only">침술</span>
+          <span class="lang-alt ko-only" style="display:none">Acupuncture</span>
+          <p><span class="en-only">Traditional needle therapy to restore the flow of Qi, reduce pain, and promote healing throughout the body.</span><span class="ko-only">기(氣)의 흐름을 회복하고 통증을 줄이며 전신 치유를 촉진하는 전통 침 치료.</span></p>
         </article>
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
-          <h3><span class="en-only">Post-Stroke Rehabilitation</span><span class="ko-only">뇌졸중 후 재활</span></h3>
-          <p><span class="en-only">65-year-old male, 3 months post-stroke with right-side weakness. Acupuncture combined with Tui Na over 12 sessions improved grip strength and range of motion, facilitating faster return to daily activities.</span><span class="ko-only">뇌졸중 3개월 후 우측 약화 65세 남성. 12회 침·추나 치료로 악력·관절 가동범위 향상, 일상 복귀 촉진.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          <h3><span class="en-only">Herbal Medicine</span><span class="ko-only">한약</span></h3>
+          <span class="lang-alt en-only">한약</span>
+          <span class="lang-alt ko-only" style="display:none">Herbal Medicine</span>
+          <p><span class="en-only">Personalised herbal formulas prepared to support your specific constitution and health condition, sourced from traditional pharmacopoeia.</span><span class="ko-only">개인 체질과 건강 상태에 맞춘 맞춤 한약 처방. 전통 약전에서 약재를 조제합니다.</span></p>
         </article>
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          <h3><span class="en-only">Insomnia &amp; Anxiety in Aged Care</span><span class="ko-only">요양원 불면·불안</span></h3>
-          <p><span class="en-only">An 82-year-old woman in a Doncaster retirement village experiencing severe sleep disruption. Herbal medicine combined with acupuncture normalised sleep patterns within 3 weeks without pharmaceutical interaction.</span><span class="ko-only">던캐스터 은퇴 마을 82세 여성, 심한 수면장애. 한약·침 병행 3주 만에 수면 패턴 정상화, 약물 상호작용 없음.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <h3><span class="en-only">Moxibustion</span><span class="ko-only">뜸</span></h3>
+          <span class="lang-alt en-only">뜸</span>
+          <span class="lang-alt ko-only" style="display:none">Moxibustion</span>
+          <p><span class="en-only">Heat therapy using dried mugwort to warm and stimulate specific acupoints, particularly effective for cold and deficiency conditions.</span><span class="ko-only">건조 쑥을 이용한 열 치료로 특정 경혈을 자극. 한증(寒證)과 허증(虛證)에 특히 효과적.</span></p>
         </article>
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <h3><span class="en-only">Knee Osteoarthritis</span><span class="ko-only">슬관절 퇴행성 관절염</span></h3>
-          <p><span class="en-only">70-year-old retired nurse with bilateral knee OA, refusing surgical intervention. Moxibustion and acupuncture reduced morning stiffness by 60% over 6 weeks, allowing her to walk without a frame for the first time in two years.</span><span class="ko-only">수술 거부 70세 퇴직 간호사, 양측 무릎 퇴행성 관절염. 6주 뜸·침 치료로 아침 강직 60% 감소, 2년 만에 보행 보조 없이 보행.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          <h3><span class="en-only">Cupping</span><span class="ko-only">부항</span></h3>
+          <span class="lang-alt en-only">부항</span>
+          <span class="lang-alt ko-only" style="display:none">Cupping</span>
+          <p><span class="en-only">Suction cup therapy to increase circulation, release muscle tension, and draw out toxins from the superficial fascia.</span><span class="ko-only">흡착 컵 치료로 혈액 순환을 높이고 근육 긴장을 풀며 표층 근막의 독소를 배출합니다.</span></p>
         </article>
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <h3><span class="en-only">Digestive Disorder Management</span><span class="ko-only">소화기 질환 관리</span></h3>
-          <p><span class="en-only">58-year-old with chronic IBS unresponsive to conventional treatments. A 10-week herbal medicine and dietary protocol reduced flare frequency from weekly to once monthly.</span><span class="ko-only">기존 치료 무반응 58세 만성 과민성대장증후군. 10주 한약·식이 요법으로 발작 빈도 주 1회 → 월 1회 감소.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <h3><span class="en-only">Tui Na Massage</span><span class="ko-only">추나 마사지</span></h3>
+          <span class="lang-alt en-only">추나 마사지</span>
+          <span class="lang-alt ko-only" style="display:none">Tui Na Massage</span>
+          <p><span class="en-only">Chinese therapeutic massage using rhythmic compression and manipulation to relieve musculoskeletal tension and improve mobility.</span><span class="ko-only">리드미컬한 압박과 조작 기법을 사용하는 중국식 치료 마사지. 근골격 긴장 해소 및 이동성 향상.</span></p>
         </article>
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          <h3><span class="en-only">Palliative Support — Dementia Care</span><span class="ko-only">완화 의료 — 치매 케어</span></h3>
-          <p><span class="en-only">85-year-old dementia patient in an aged-care facility exhibiting agitation. Regular acupuncture sessions reduced behavioural symptoms and improved sleep quality over a 2-month period.</span><span class="ko-only">요양원 치매 환자 85세, 흥분 증상. 정기적 침 치료로 2개월 동안 행동 증상 감소, 수면 질 향상.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          <h3><span class="en-only">Pain Management</span><span class="ko-only">통증 관리</span></h3>
+          <span class="lang-alt en-only">통증 관리</span>
+          <span class="lang-alt ko-only" style="display:none">Pain Management</span>
+          <p><span class="en-only">Comprehensive TCM protocols for acute and chronic pain, combining acupuncture, herbal medicine, and manual therapies.</span><span class="ko-only">침술, 한약, 수기 치료를 결합한 급·만성 통증 종합 한의 프로토콜.</span></p>
         </article>
         <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <h3><span class="en-only">Shingles (Herpes Zoster) Pain</span><span class="ko-only">대상포진 통증</span></h3>
-          <p><span class="en-only">72-year-old with post-herpetic neuralgia resistant to topical treatment. Acupuncture targeting affected dermatomes, combined with cupping, reduced neuropathic pain from 8/10 to 3/10 within 5 weeks.</span><span class="ko-only">외용 치료 저항 72세 포진 후 신경통. 피부절 침 + 부항 5주 치료로 신경통 8→3/10 감소.</span></p>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          <h3><span class="en-only">Aged Care &amp; Rehabilitation</span><span class="ko-only">노인 돌봄 및 재활</span></h3>
+          <span class="lang-alt en-only">노인 돌봄 및 재활</span>
+          <span class="lang-alt ko-only" style="display:none">Aged Care &amp; Rehabilitation</span>
+          <p><span class="en-only">Specialist TCM services for elderly patients in nursing homes and retirement villages, including post-stroke rehabilitation and dementia support.</span><span class="ko-only">요양원·은퇴 마을 어르신 전문 한의 서비스. 뇌졸중 후 재활 및 치매 지원 포함.</span></p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS — demo sample content (final testimonials to be provided by client) -->
-  <section class="page-section section-testimonials" aria-labelledby="testimonials-heading">
+  <!-- CTA STRIP -->
+  <section class="cta-strip cta-strip--green" aria-label="Contact call to action">
     <div class="container">
-      <div class="section-heading">
-        <h2 id="testimonials-heading">
-          <span class="en-only">What Patients Are Saying</span>
-          <span class="ko-only">환자 후기</span>
-        </h2>
-        <p>
-          <span class="en-only">Experiences from patients and their families across our mobile practice.</span>
-          <span class="ko-only">방문 진료를 통해 케어를 받으신 환자분들과 가족분들의 이야기입니다.</span>
-        </p>
-        <span class="demo-note">
-          <span class="en-only">Demo content — final testimonials to be confirmed by client before launch</span>
-          <span class="ko-only">데모 내용 — 최종 후기는 출시 전 고객 확인 예정</span>
-        </span>
-      </div>
-      <div class="testimonials-list" role="list">
-
-        <!-- Testimonial 1: Korean family member (bilingual) -->
-        <div class="accordion-card" role="listitem">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-body-1" id="accordion-btn-1">
-            <div class="accordion-trigger-text">
-              <div class="testimonial-stars" aria-label="5 out of 5 stars">
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="accordion-name">
-                <span class="en-only">Ms Kim, daughter of patient (77)</span>
-                <span class="ko-only">김○○ 보호자 (환자 77세)</span>
-                <span class="testimonial-badge testimonial-badge--demo">
-                  <span class="en-only">Demo</span><span class="ko-only">데모</span>
-                </span>
-              </span>
-              <span class="accordion-summary-line">
-                <span class="en-only">Father's shoulder pain gone after 6 visits — he's back to morning walks</span>
-                <span class="ko-only">아버지 어깨 통증이 6회 만에 사라졌어요 — 아침 산책도 다시 시작하셨습니다</span>
-              </span>
-            </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-body" id="accordion-body-1" role="region" aria-labelledby="accordion-btn-1">
-            <p class="en-only">My father suffered from severe shoulder pain and stiffness for over three years. He lives in a nursing home and I had resigned myself to him never getting better. Han Soo visited him every week for six weeks, and by the end, Dad was lifting his arm above his head again. He's now back to his morning walks with the physio team. We're so grateful to have found a practitioner willing to come to him.</p>
-            <p class="ko-only">아버지께서 3년 넘게 심한 어깨 통증과 뻣뻣함으로 고생하셨습니다. 요양원에 계셔서 이제 나아지기는 어렵겠다고 생각했는데, 한수 원장님이 6주간 매주 방문해 주셨고, 마지막 방문 즈음에는 팔을 머리 위로 들어 올리실 수 있게 됐어요. 지금은 물리치료 팀과 아침 산책도 다시 시작하셨습니다. 직접 찾아와 주시는 원장님을 만나게 되어 정말 감사합니다.</p>
-            <button class="accordion-close"><span class="en-only">Close</span><span class="ko-only">닫기</span> ✕</button>
-          </div>
-        </div>
-
-        <!-- Testimonial 2: Aged care coordinator (English-speaking audience) -->
-        <div class="accordion-card" role="listitem">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-body-2" id="accordion-btn-2">
-            <div class="accordion-trigger-text">
-              <div class="testimonial-stars" aria-label="5 out of 5 stars">
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="accordion-name">
-                <span class="en-only">Sarah M. — Aged Care Coordinator, Bundoora</span>
-                <span class="ko-only">사라 M. — 번두라 요양원 케어 코디네이터</span>
-                <span class="testimonial-badge testimonial-badge--demo">
-                  <span class="en-only">Demo</span><span class="ko-only">데모</span>
-                </span>
-              </span>
-              <span class="accordion-summary-line">
-                <span class="en-only">Residents are calmer and sleeping better — families keep asking how to book more sessions</span>
-                <span class="ko-only">거주자들이 더 차분해지고 수면도 개선됐어요 — 가족분들이 추가 예약을 계속 문의하십니다</span>
-              </span>
-            </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-body" id="accordion-body-2" role="region" aria-labelledby="accordion-btn-2">
-            <p class="en-only">We've had Han Soo visit our facility twice a month for four months now. The change in three of our residents receiving acupuncture is remarkable — better sleep, less agitation, and two have been able to reduce their pain medication under GP review. The nursing staff have noticed it and families keep asking how to get more sessions. It's become a genuinely valued part of our care program.</p>
-            <p class="ko-only">한수 원장님이 4개월 동안 한 달에 두 번씩 저희 시설을 방문해 주고 있습니다. 침 치료를 받으신 세 분 거주자의 변화가 정말 눈에 띄어요 — 수면이 개선되고, 흥분 증세가 줄었으며, 두 분은 주치의 검토하에 진통제를 줄이셨습니다. 간호팀도 변화를 느끼고 있고, 가족분들이 계속 추가 치료를 문의합니다. 저희 케어 프로그램에 진정으로 가치 있는 부분이 됐습니다.</p>
-            <button class="accordion-close"><span class="en-only">Close</span><span class="ko-only">닫기</span> ✕</button>
-          </div>
-        </div>
-
-        <!-- Testimonial 3: Korean patient (bilingual) -->
-        <div class="accordion-card" role="listitem">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-body-3" id="accordion-btn-3">
-            <div class="accordion-trigger-text">
-              <div class="testimonial-stars" aria-label="5 out of 5 stars">
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg class="tstar" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="accordion-name">
-                <span class="en-only">Mr Park (68), retired — home visit patient</span>
-                <span class="ko-only">박○○ (68세), 은퇴 — 자택 방문 환자</span>
-                <span class="testimonial-badge testimonial-badge--demo">
-                  <span class="en-only">Demo</span><span class="ko-only">데모</span>
-                </span>
-              </span>
-              <span class="accordion-summary-line">
-                <span class="en-only">Twenty years of lower back pain — three months of treatment and I can sit through a family dinner again</span>
-                <span class="ko-only">20년 요통 — 3개월 치료 후 가족 저녁 식사 자리를 끝까지 함께할 수 있게 됐습니다</span>
-              </span>
-            </div>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-body" id="accordion-body-3" role="region" aria-labelledby="accordion-btn-3">
-            <p class="en-only">I've had chronic lower back pain since a workplace injury in my forties. Tried everything over the years. My daughter suggested I try Han Soo after hearing about him from a friend. He visited my home and we discussed my full history in Korean — that alone was a relief. After three months of regular sessions, I'm not pain-free, but I can sit through a family dinner for the first time in years. That means everything to me.</p>
-            <p class="ko-only">40대에 직업 부상을 입은 이후 20년 넘게 만성 요통을 앓았습니다. 정말 많은 치료를 시도해 봤어요. 딸이 지인을 통해 한수 원장님을 알게 되어 소개해 주었습니다. 원장님이 집으로 방문해 주셔서 한국어로 제 전체 병력을 차분히 상담해 주셨는데, 그것만으로도 마음이 많이 편해졌습니다. 3개월간 정기 치료 후 완전히 통증이 없어진 건 아니지만, 오랜만에 가족 저녁 식사 자리를 끝까지 함께할 수 있게 됐습니다. 제게는 정말 큰 의미입니다.</p>
-            <button class="accordion-close"><span class="en-only">Close</span><span class="ko-only">닫기</span> ✕</button>
-          </div>
-        </div>
-
-      </div>
-      <div style="text-align:center;margin-top:var(--space-xl)">
-        <a href="testimonials.html" class="btn btn-secondary">
-          <span class="en-only">Read All Testimonials →</span>
-          <span class="ko-only">전체 후기 보기 →</span>
-        </a>
-      </div>
+      <p>
+        <span class="en-only">Ready to arrange a visit? Contact us today.</span>
+        <span class="ko-only">방문 진료를 예약하시겠습니까? 지금 바로 연락 주세요.</span>
+      </p>
+      <a href="contact.html" class="btn btn-white">
+        <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+      </a>
     </div>
   </section>
 
@@ -361,9 +240,10 @@
         <h4><span class="en-only">Navigation</span><span class="ko-only">메뉴</span></h4>
         <ul>
           <li><a href="home.html"><span class="en-only">Home</span><span class="ko-only">홈</span></a></li>
-          <li><a href="clinic.html"><span class="en-only">Clinic Introduction</span><span class="ko-only">의원 소개</span></a></li>
+          <li><a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
           <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
-          <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+          <li><a href="clinical-cases.html"><span class="en-only">Clinical Case Library</span><span class="ko-only">임상 사례</span></a></li>
+          <li><a href="journal.html"><span class="en-only">The Present Journal</span><span class="ko-only">선물 저널</span></a></li>
           <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
         </ul>
       </div>
@@ -375,6 +255,11 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C7.03 3 3 6.36 3 10.5c0 2.75 1.77 5.16 4.43 6.55-.19.71-.71 2.59-.81 2.99 0 0-.01.08.04.11.05.03.11 0 .11 0 .14-.02 3.32-2.18 3.73-2.46.48.07.98.11 1.5.11 4.97 0 9-3.36 9-7.5S16.97 3 12 3z"/></svg>
           <span class="en-only">KakaoTalk (Coming soon)</span>
           <span class="ko-only">카카오톡으로 문의 (준비 중)</span>
+        </a>
+        <a href="#" class="instagram-btn" aria-disabled="true" title="Instagram coming soon" style="margin-top:8px;display:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span class="en-only">Instagram (Coming soon)</span>
+          <span class="ko-only">인스타그램 (준비 중)</span>
         </a>
         <div class="footer-lang-toggle" style="margin-top:16px">
           <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
@@ -392,25 +277,6 @@
 
 <script src="i18n.js"></script>
 <script>
-  // ── Accordion ──────────────────────────────────────────────
-  document.querySelectorAll('.accordion-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.accordion-card');
-      const isOpen = card.classList.contains('is-open');
-      card.classList.toggle('is-open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-  document.querySelectorAll('.accordion-close').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.accordion-card');
-      const trigger = card.querySelector('.accordion-trigger');
-      card.classList.remove('is-open');
-      trigger.setAttribute('aria-expanded', 'false');
-      trigger.focus();
-    });
-  });
-
   // ── Mobile nav ─────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger-btn');
   const mobileNav = document.getElementById('mobile-nav');
