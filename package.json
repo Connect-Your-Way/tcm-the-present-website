@@ -1,0 +1,10 @@
+{
+  "name": "tcm-the-present-phase-02-preview",
+  "version": "2.0.0",
+  "description": "TCM The Present — Phase 2 Mobile Responsiveness & Accessibility Audit Preview",
+  "scripts": {
+    "start": "npx serve . -p 3001",
+    "dev": "npx serve . -p 3001"
+  },
+  "private": true
+}

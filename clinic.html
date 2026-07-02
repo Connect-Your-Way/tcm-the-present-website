@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic Introduction — TCM The Present · UI Design Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="corrections.css">
+  <!-- Apply language preference before DOM renders (prevents flash) -->
+  <script>try{var _l=localStorage.getItem('tcm-lang')||'en';document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}catch(e){}</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="container inner">
+    <a href="home.html" class="logo" aria-label="TCM The Present — Home">
+      TCM The Present
+      <span>더 프레젠트 한의원</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav">
+        <li><a href="clinic.html" aria-current="page"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
+        <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+        <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+        <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle" role="group" aria-label="Select language">
+        <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+      </div>
+      <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" id="hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a>
+    <a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a>
+    <a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a>
+    <a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a>
+    <div class="lang-toggle" style="margin-top:16px" role="group" aria-label="Select language">
+      <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+      <span class="lang-divider">/</span>
+      <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center">
+      <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+    </a>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <!-- ╔═══════ EN PAGE HERO ═══════╗ -->
+  <section class="hero page-hero en-only" aria-labelledby="clinic-hero-en">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">Mobile TCM Practice</span>
+          <h1 id="clinic-hero-en">TCM Care Where You Live</h1>
+          <p class="subheadline">Zacc Kim brings specialist traditional Chinese medicine to nursing homes, retirement villages, and private homes — right where you or your loved one lives.</p>
+          <a href="contact.html" class="btn btn-primary">Make an Enquiry</a>
+        </div>
+        <div class="hero-visual">
+          <div class="blob-wrap">
+            <img class="blob-img" src="https://picsum.photos/seed/tcm-clinic/600/450" alt="TCM practitioner visiting elderly patient in nursing home" width="600" height="450" loading="eager">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔═══════ KO PAGE HERO ═══════╗ -->
+  <section class="hero page-hero ko-only" aria-labelledby="clinic-hero-ko">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">방문 한의 진료</span>
+          <h1 id="clinic-hero-ko">계시는 곳으로 찾아가는 한의 케어</h1>
+          <p class="subheadline">김한수 원장이 요양원, 은퇴 마을, 자택을 직접 방문하여 당신과 소중한 가족에게 전문 한의 치료를 제공합니다.</p>
+          <a href="contact.html" class="btn btn-primary">문의하기</a>
+        </div>
+        <div class="hero-visual">
+          <div class="blob-wrap">
+            <img class="blob-img" src="https://picsum.photos/seed/tcm-clinic/600/450" alt="요양원 방문 진료 한의사" width="600" height="450" loading="eager">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINIC INTRO (placeholder — bilingual) -->
+  <section class="page-section" style="background:var(--color-white)" aria-labelledby="clinic-intro-heading">
+    <div class="container" style="max-width:760px">
+      <h2 id="clinic-intro-heading" style="margin-bottom:var(--space-lg)">
+        <span class="en-only">About the Clinic</span>
+        <span class="ko-only">의원 소개</span>
+      </h2>
+      <div class="placeholder-block">
+        <p><span class="en-only">Clinic introduction coming soon — content to be provided by Dr Zacc Kim.</span><span class="ko-only">의원 소개 내용 준비 중 — 김한수 원장 제공 예정.</span></p>
+        <p style="margin-top:8px;font-size:var(--text-body-sm)">
+          <em><span class="en-only">This styled placeholder will be replaced with the practitioner's clinic introduction once provided. The layout and typography shown here represent the final design.</span><span class="ko-only">이 임시 표시는 원장님이 내용을 제공하시면 실제 의원 소개로 교체됩니다.</span></em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREATMENT AREAS (treatment cards are bilingual by design) -->
+  <section class="page-section" style="background:var(--color-bg-alt)" aria-labelledby="treatments-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h2 id="treatments-heading">
+          <span class="en-only">Treatment Areas</span>
+          <span class="ko-only">진료 분야</span>
+        </h2>
+        <p>
+          <span class="en-only">Bilingual treatment listings — final content from client. Placeholder names shown below.</span>
+          <span class="ko-only">진료 분야 목록 — 최종 내용은 고객 제공 예정입니다.</span>
+        </p>
+      </div>
+      <div class="card-grid">
+        <!-- Each card shows EN primary h3 + KO lang-alt always (bilingual-by-design pattern) -->
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3><span class="en-only">Acupuncture</span><span class="ko-only">침술</span></h3>
+          <span class="lang-alt en-only">침술</span>
+          <span class="lang-alt ko-only" style="display:none">Acupuncture</span>
+          <p><span class="en-only">Traditional needle therapy to restore the flow of Qi, reduce pain, and promote healing throughout the body.</span><span class="ko-only">기(氣)의 흐름을 회복하고 통증을 줄이며 전신 치유를 촉진하는 전통 침 치료.</span></p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          <h3><span class="en-only">Herbal Medicine</span><span class="ko-only">한약</span></h3>
+          <span class="lang-alt en-only">한약</span>
+          <span class="lang-alt ko-only" style="display:none">Herbal Medicine</span>
+          <p><span class="en-only">Personalised herbal formulas prepared to support your specific constitution and health condition, sourced from traditional pharmacopoeia.</span><span class="ko-only">개인 체질과 건강 상태에 맞춘 맞춤 한약 처방. 전통 약전에서 약재를 조제합니다.</span></p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <h3><span class="en-only">Moxibustion</span><span class="ko-only">뜸</span></h3>
+          <span class="lang-alt en-only">뜸</span>
+          <span class="lang-alt ko-only" style="display:none">Moxibustion</span>
+          <p><span class="en-only">Heat therapy using dried mugwort to warm and stimulate specific acupoints, particularly effective for cold and deficiency conditions.</span><span class="ko-only">건조 쑥을 이용한 열 치료로 특정 경혈을 자극. 한증(寒證)과 허증(虛證)에 특히 효과적.</span></p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          <h3><span class="en-only">Cupping</span><span class="ko-only">부항</span></h3>
+          <span class="lang-alt en-only">부항</span>
+          <span class="lang-alt ko-only" style="display:none">Cupping</span>
+          <p><span class="en-only">Suction cup therapy to increase circulation, release muscle tension, and draw out toxins from the superficial fascia.</span><span class="ko-only">흡착 컵 치료로 혈액 순환을 높이고 근육 긴장을 풀며 표층 근막의 독소를 배출합니다.</span></p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <h3><span class="en-only">Tui Na Massage</span><span class="ko-only">추나 마사지</span></h3>
+          <span class="lang-alt en-only">추나 마사지</span>
+          <span class="lang-alt ko-only" style="display:none">Tui Na Massage</span>
+          <p><span class="en-only">Chinese therapeutic massage using rhythmic compression and manipulation to relieve musculoskeletal tension and improve mobility.</span><span class="ko-only">리드미컬한 압박과 조작 기법을 사용하는 중국식 치료 마사지. 근골격 긴장 해소 및 이동성 향상.</span></p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          <h3><span class="en-only">Pain Management</span><span class="ko-only">통증 관리</span></h3>
+          <span class="lang-alt en-only">통증 관리</span>
+          <span class="lang-alt ko-only" style="display:none">Pain Management</span>
+          <p><span class="en-only">Comprehensive TCM protocols for acute and chronic pain, combining acupuncture, herbal medicine, and manual therapies.</span><span class="ko-only">침술, 한약, 수기 치료를 결합한 급·만성 통증 종합 한의 프로토콜.</span></p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          <h3><span class="en-only">Aged Care &amp; Rehabilitation</span><span class="ko-only">노인 돌봄 및 재활</span></h3>
+          <span class="lang-alt en-only">노인 돌봄 및 재활</span>
+          <span class="lang-alt ko-only" style="display:none">Aged Care &amp; Rehabilitation</span>
+          <p><span class="en-only">Specialist TCM services for elderly patients in nursing homes and retirement villages, including post-stroke rehabilitation and dementia support.</span><span class="ko-only">요양원·은퇴 마을 어르신 전문 한의 서비스. 뇌졸중 후 재활 및 치매 지원 포함.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip cta-strip--green" aria-label="Contact call to action">
+    <div class="container">
+      <p>
+        <span class="en-only">Ready to arrange a visit? Get in touch today.</span>
+        <span class="ko-only">방문 진료를 예약하시겠습니까? 지금 바로 연락 주세요.</span>
+      </p>
+      <a href="contact.html" class="btn btn-white">
+        <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="home.html" class="footer-logo">TCM The Present</a>
+        <p class="footer-tagline">
+          <span class="en-only">Visiting nursing homes, retirement villages, and homes across Australia.</span>
+          <span class="ko-only">전국 요양원, 은퇴 마을, 자택을 방문하는 한의원입니다.</span>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-only">Navigation</span><span class="ko-only">메뉴</span></h4>
+        <ul>
+          <li><a href="home.html"><span class="en-only">Home</span><span class="ko-only">홈</span></a></li>
+          <li><a href="clinic.html"><span class="en-only">Clinic Introduction</span><span class="ko-only">의원 소개</span></a></li>
+          <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+          <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+          <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-only">Contact</span><span class="ko-only">연락처</span></h4>
+        <p style="color:var(--color-accent-light);font-size:var(--text-body-sm)">+61 4XX XXX XXX <span class="en-only">(to be confirmed)</span><span class="ko-only">(확인 예정)</span></p>
+        <div class="footer-lang-toggle" style="margin-top:16px">
+          <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+          <span style="color:rgba(255,255,255,0.3);padding:0 4px">/</span>
+          <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">한국어</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TCM The Present. <span class="en-only">All rights reserved.</span><span class="ko-only">모든 권리 보유.</span></p>
+      <p>Web design by <a href="https://connectyourway.au" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5)">CYW</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn  = document.getElementById('mobile-nav-close');
+  function openNav() { mobileNav.classList.add('is-open'); hamburger.setAttribute('aria-expanded','true'); closeBtn.focus(); }
+  function closeNav() { mobileNav.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); hamburger.focus(); }
+  hamburger?.addEventListener('click', openNav);
+  closeBtn?.addEventListener('click', closeNav);
+  mobileNav?.addEventListener('click', e => { if (e.target === mobileNav) closeNav(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+/* TCM The Present — Phase 2 Corrections
+   =========================================
+   This file patches base.css for mobile responsiveness and accessibility.
+   Loaded AFTER base.css in every phase-02 page.
+
+   Audit performed at 390px viewport (iPhone 14 / typical small phone width).
+   Each correction references the issue identified in the Phase 2 audit.
+
+   GUIDELINE.md §8 — touch targets ≥ 44×44px
+   GUIDELINE.md §6 — motion language / focus rings
+   GUIDELINE.md §9 — responsive behaviour
+*/
+
+/* ── FIX-1: Hamburger touch target ───────────────────────────
+   Issue: Phase 1 hamburger was 38×32px — below 44×44px minimum.
+   Phase-1 CSS: padding:8px, spans 22px wide × 16px content = ~38×32px.
+   Fix: set explicit min-width/min-height and use flex centering. */
+@media (max-width: 768px) {
+  .hamburger {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .hamburger:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* ── FIX-2: Language toggle buttons touch target ─────────────
+   Issue: .lang-btn was ~32×28px on mobile — too small for touch.
+   Fix: enforce min 44×44px tap area on mobile screens. */
+@media (max-width: 768px) {
+  .lang-toggle .lang-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+  }
+  .lang-toggle {
+    gap: 4px;
+  }
+}
+
+/* ── FIX-3: Phone pill touch target ─────────────────────────
+   Issue: .phone-pill on mobile had padding:8px 16px → ~36px height.
+   Fix: enforce min-height 44px. */
+@media (max-width: 768px) {
+  .phone-pill {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+  }
+}
+
+/* ── FIX-4: Mobile nav close button touch target ─────────────
+   Issue: .mobile-nav-close used font-size:1.5rem + padding:4px 8px.
+   Effective tap area was borderline (~50px height, but only ~36px wide).
+   Fix: set explicit min dimensions. */
+.mobile-nav-inner .mobile-nav-close {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.mobile-nav-inner .mobile-nav-close:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── FIX-5: Mobile nav drawer lang toggle ────────────────────
+   Issue: lang-toggle inside mobile-nav-inner shares same small targets.
+   Fix: already covered by FIX-2, but add drawer-specific spacing. */
+.mobile-nav-inner .lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: 8px;
+}
+
+/* ── FIX-6: Hero CTA buttons — narrow viewport stacking ─────
+   Issue: at 390px, two buttons side-by-side can overflow if phone has
+   some horizontal padding. The `flex-wrap: wrap` was in phase-1, which
+   helps, but we also want them full-width stacked on very small screens.
+   Fix: stack and full-width below 480px. */
+@media (max-width: 480px) {
+  .hero-ctas {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── FIX-7: Accordion trigger focus ring on mobile ───────────
+   Issue: focus ring (outline-offset: -3px) placed ring inside the button
+   at mobile widths, which can clip on small radii.
+   Fix: switch to positive offset on mobile for better visibility. */
+@media (max-width: 768px) {
+  .accordion-trigger:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* ── FIX-8: Contact form inputs — mobile min-height ─────────
+   Issue: inputs at `padding:12px 16px` are comfortable on desktop but
+   on some mobile browsers the effective tap area shrinks.
+   Fix: explicit min-height on inputs for touch comfort. */
+@media (max-width: 768px) {
+  .form-field input {
+    min-height: 48px;
+  }
+  .form-field textarea {
+    min-height: 120px; /* already set, reinforce */
+  }
+}
+
+/* ── FIX-9: Footer lang toggle touch targets ─────────────────
+   Issue: footer lang buttons have padding:4px 8px — same small issue.
+   Fix: on mobile, enforce adequate tap area in footer. */
+@media (max-width: 768px) {
+  .footer-lang-toggle .lang-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+  }
+}
+
+/* ── FIX-10: Card grid overflow guard ───────────────────────
+   Issue: at 390px, grid gap of 24px + 1-col layout was fine, but cards
+   with long Korean text (word-break: keep-all) could push content wide.
+   Fix: ensure cards never exceed viewport width. */
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    /* Prevent any overflow from card content */
+    overflow-wrap: break-word;
+    word-break: break-word; /* fallback for CJK */
+  }
+}
+
+/* ── FIX-11: Mobile contact grid — ensure proper stacking ───
+   Confirmed: .contact-grid already stacks on ≤768px.
+   Enhancement: add top padding to the sidebar on mobile (since it
+   now comes after the form). */
+@media (max-width: 768px) {
+  .contact-sidebar {
+    padding-top: var(--space-md);
+  }
+}
+
+/* ── FIX-12: Portrait bio grid — ensure photo doesn't overflow
+   Issue: .blob-portrait .blob-img has max-width:340px which is fine,
+   but at 390px the blob-wrap needs to be properly constrained. */
+@media (max-width: 768px) {
+  .blob-portrait {
+    max-width: 280px;
+    margin-inline: auto;
+  }
+}
+
+/* ── FIX-13: Social proof band text — tighten on mobile ─────
+   Issue: .social-proof p has max-width:560px — fine, but font-size
+   (--text-body-xl clamp min 1.25rem = 20px) is comfortable.
+   No change needed; confirmed PASS at 390px.
+   Annotated here for audit completeness. */
+
+/* ── FIX-14: Page section padding — tighten on mobile ───────
+   Issue: .page-section { padding: var(--space-3xl) 0 } = 6rem = 96px
+   is too much vertical space at mobile widths.
+   Fix: reduce to var(--space-2xl) = 4rem on mobile. */
+@media (max-width: 768px) {
+  .page-section {
+    padding: var(--space-2xl) 0;
+  }
+  .hero {
+    padding: var(--space-xl) 0 var(--space-2xl);
+  }
+}
+
+/* ── FIX-15: Overflow guard — prevent any horizontal scroll ──
+   Applied globally to reinforce no-scroll at 390px. */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ── NEW: Mobile testimonial card padding ────────────────────
+   Enhancement: on mobile, accordion cards benefit from tighter
+   horizontal padding to leave more reading width. */
+@media (max-width: 480px) {
+  .accordion-trigger {
+    padding: 16px 16px;
+  }
+  .accordion-body {
+    padding: 0 16px 16px;
+  }
+}
+
+/* ── NEW: Skip link visibility improvement ───────────────────
+   Improvement: the skip link was already functional; add a subtle
+   transition for a smoother appearance on focus. */
+.skip-link {
+  transition: top var(--transition-fast);
+}
+
+/* ── AUDIT: Contrast verification at mobile breakpoints ──────
+   At 390px, colour tokens remain unchanged — no re-theming at
+   mobile breakpoints. All WCAG AA ratios verified in GUIDELINE.md §2.5.
+   (No CSS change needed; annotated for audit record.) */
