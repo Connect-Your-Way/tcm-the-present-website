@@ -1,14 +1,15 @@
 ---
 /**
  * Header.astro — sticky site header (§06 00-layout.md §3)
- * Desktop: logo + primary nav + phone pill + Contact CTA + language toggle
- * Mobile: logo + phone pill + hamburger menu
+ * Matches the phase-02 design: wordmark + Korean subtitle + primary nav +
+ * language toggle. No header phone pill, no header Contact-Us button
+ * (both removed in the phase-02 rework). Contact stays reachable via nav
+ * and the mobile drawer CTA.
  * Purely server-rendered; HamburgerMenu has a small client:visible JS island.
  */
 import type { LocaleBundle } from "../lib/i18n.ts";
 import { getString } from "../lib/i18n.ts";
 import LanguageToggle from "./LanguageToggle.astro";
-import PhonePill from "./PhonePill.astro";
 import HamburgerMenu from "./HamburgerMenu.astro";
 
 export interface Props {
@@ -19,21 +20,19 @@ export interface Props {
 
 const { locale, currentPath, bundle } = Astro.props;
 const logoLabel = getString(bundle, "common.header.logoAriaLabel");
-const contactCta = getString(bundle, "common.header.contactCta");
+const wordmarkSubtitle = getString(bundle, "common.header.wordmarkSubtitle");
 const navLabel = getString(bundle, "common.nav.ariaLabel");
 const navClinic = getString(bundle, "common.nav.clinic");
 const navAbout = getString(bundle, "common.nav.about");
 const navContact = getString(bundle, "common.nav.contact");
-
-// Read phone number from env (server-rendered content — import.meta.env in Astro server mode)
-const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined) ?? "+61 4XX XXX XXX";
 ---
 
 <header class="site-header">
   <div class="container inner">
-    {/* Logo / wordmark */}
+    {/* Logo / wordmark + Korean subtitle */}
     <a class="site-logo" href={`/${locale}/`} aria-label={logoLabel}>
       <span class="logo-text">TCM The Present</span>
+      <span class="logo-subtitle">{wordmarkSubtitle}</span>
     </a>
 
     {/* Desktop primary navigation */}
@@ -60,18 +59,13 @@ const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined)
       </ul>
     </nav>
 
-    {/* Desktop right cluster */}
+    {/* Desktop right cluster — language toggle only */}
     <div class="header-actions">
-      <PhonePill phoneNumber={phoneNumber} />
-      <a class="btn-contact-cta" href={`/${locale}/contact/`}>
-        {contactCta}
-      </a>
       <LanguageToggle locale={locale} currentPath={currentPath} bundle={bundle} />
     </div>
 
-    {/* Mobile: phone pill + hamburger */}
+    {/* Mobile: hamburger only */}
     <div class="mobile-actions">
-      <PhonePill phoneNumber={phoneNumber} />
       <HamburgerMenu locale={locale} currentPath={currentPath} bundle={bundle} />
     </div>
   </div>
@@ -102,13 +96,28 @@ const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined)
   .site-logo {
     flex-shrink: 0;
     text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
   }
 
   .logo-text {
     font-family: var(--font-display);
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-weight: 700;
+    color: var(--color-primary-dark);
+    white-space: nowrap;
+  }
+
+  .logo-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--color-primary);
+    margin-top: 2px;
     white-space: nowrap;
   }
 
@@ -119,6 +128,7 @@ const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined)
   .desktop-nav ul {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
   }
 
@@ -143,27 +153,6 @@ const phoneNumber: string = (import.meta.env.PHONE_NUMBER as string | undefined)
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
-  }
-
-  .btn-contact-cta {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.625rem 1.25rem;
-    background: var(--color-accent);
-    color: var(--color-primary-dark);
-    font-family: var(--font-sans);
-    font-size: var(--text-ui);
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    min-height: 44px;
-    white-space: nowrap;
-    transition: background 0.2s ease;
-  }
-
-  .btn-contact-cta:hover {
-    background: var(--color-primary-mid);
-    color: var(--color-white);
   }
 
   .mobile-actions {

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — TCM The Present · UI Design Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="corrections.css">
+  <script>try{var _l=localStorage.getItem('tcm-lang')||'en';document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}catch(e){}</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="container inner">
+    <a href="home.html" class="logo">TCM The Present<span>더 프레젠트 한의원</span></a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav">
+        <li><a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
+        <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+        <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+        <li><a href="contact.html" aria-current="page"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle" role="group" aria-label="Select language">
+        <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+      </div>
+      <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" id="hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a>
+    <a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a>
+    <a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a>
+    <a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a>
+    <div class="lang-toggle" style="margin-top:16px" role="group" aria-label="Select language">
+      <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+      <span class="lang-divider">/</span>
+      <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center">
+      <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+    </a>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <!-- PAGE HERO (bilingual inline) -->
+  <section class="page-section page-hero" style="background:var(--color-bg);border-bottom:1px solid var(--color-border)" aria-labelledby="contact-heading">
+    <div class="container">
+      <h1 id="contact-heading" style="margin-bottom:var(--space-md)">
+        <span class="en-only">Get in Touch</span>
+        <span class="ko-only">문의하기</span>
+      </h1>
+      <p style="font-size:var(--text-body-xl);color:var(--color-text-body);max-width:540px">
+        <span class="en-only">We'd love to hear from you. Fill in the form below, call us, or reach out via KakaoTalk.</span>
+        <span class="ko-only">아래 양식을 작성하시거나 전화 또는 카카오톡으로 연락 주세요.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT BODY -->
+  <section class="page-section" style="background:var(--color-white)">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT: Contact form (bilingual labels) -->
+        <div>
+          <h2 style="font-size:var(--text-h3);margin-bottom:var(--space-lg)">
+            <span class="en-only">Send a Message</span>
+            <span class="ko-only">메시지 보내기</span>
+          </h2>
+
+          <!-- Success state (hidden by default) -->
+          <div id="form-success" class="form-success" style="display:none" aria-live="polite" role="status">
+            <p>
+              <span class="en-only">✅ Thank you! Your message has been sent.</span>
+              <span class="ko-only">✅ 감사합니다! 메시지가 전송되었습니다.</span>
+            </p>
+            <p style="color:var(--color-text-body);font-weight:400;font-size:var(--text-body-sm)">
+              <span class="en-only">We'll get back to you soon.</span>
+              <span class="ko-only">곧 연락드리겠습니다.</span>
+            </p>
+            <button class="btn btn-secondary" onclick="resetForm()" style="margin-top:8px">
+              <span class="en-only">Send another message</span>
+              <span class="ko-only">다시 문의하기</span>
+            </button>
+          </div>
+
+          <form id="contact-form" novalidate>
+            <div class="form-field">
+              <label for="name">
+                <span class="en-only">Name</span>
+                <span class="ko-only">이름</span>
+                <span style="color:var(--color-error)" aria-hidden="true"> *</span>
+              </label>
+              <input type="text" id="name" name="name" required maxlength="100"
+                placeholder="Your full name / 성함"
+                aria-required="true" aria-describedby="name-error">
+              <span class="form-error" id="name-error" role="alert" style="display:none">
+                <span class="en-only">This field is required.</span>
+                <span class="ko-only">이 필드는 필수입니다.</span>
+              </span>
+            </div>
+            <div class="form-field">
+              <label for="email">
+                <span class="en-only">Email</span>
+                <span class="ko-only">이메일</span>
+                <span style="color:var(--color-error)" aria-hidden="true"> *</span>
+              </label>
+              <input type="email" id="email" name="email" required
+                placeholder="your@email.com"
+                aria-required="true" aria-describedby="email-error">
+              <span class="form-error" id="email-error" role="alert" style="display:none">
+                <span class="en-only">Please enter a valid email address.</span>
+                <span class="ko-only">유효한 이메일 주소를 입력해 주세요.</span>
+              </span>
+            </div>
+            <div class="form-field">
+              <label for="message">
+                <span class="en-only">Message</span>
+                <span class="ko-only">메시지</span>
+                <span style="color:var(--color-error)" aria-hidden="true"> *</span>
+              </label>
+              <textarea id="message" name="message" required maxlength="2000"
+                placeholder="How can we help? / 어떻게 도와드릴까요?"
+                rows="5" aria-required="true" aria-describedby="message-error"></textarea>
+              <span class="form-error" id="message-error" role="alert" style="display:none">
+                <span class="en-only">This field is required.</span>
+                <span class="ko-only">이 필드는 필수입니다.</span>
+              </span>
+            </div>
+
+            <!-- Error state -->
+            <div id="form-error-state" style="display:none;background:#FEF0EE;border:1.5px solid var(--color-error);border-radius:var(--radius-md);padding:16px;margin-bottom:16px" aria-live="assertive" role="alert">
+              <p style="color:var(--color-error);font-weight:600;margin-bottom:8px">
+                <span class="en-only">⚠️ Something went wrong sending your message.</span>
+                <span class="ko-only">⚠️ 메시지 전송 중 오류가 발생했습니다.</span>
+              </p>
+              <p style="font-size:var(--text-body-sm);margin:0">
+                <span class="en-only">Please try again, or contact us directly.</span>
+                <span class="ko-only">다시 시도하시거나 직접 연락해 주세요.</span>
+              </p>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;justify-content:center">
+              <span id="submit-label">
+                <span class="en-only">Send Message</span>
+                <span class="ko-only">전송하기</span>
+              </span>
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT: Phone / KakaoTalk / service area -->
+        <div class="contact-sidebar">
+          <div class="contact-info-block">
+            <h3>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:middle;margin-right:6px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.22 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <span class="en-only">Call us</span>
+              <span class="ko-only">전화하기</span>
+            </h3>
+            <p>+61 4XX XXX XXX <span style="color:var(--color-text-muted);font-size:var(--text-body-sm)">
+              <span class="en-only">(to be confirmed)</span>
+              <span class="ko-only">(확인 예정)</span>
+            </span></p>
+            <p style="font-size:var(--text-body-sm);color:var(--color-text-muted)">
+              <span class="en-only">Phone number will be confirmed by Dr Zacc Kim before the site goes live.</span>
+              <span class="ko-only">전화번호는 사이트 오픈 전 김한수 원장에 의해 확정됩니다.</span>
+            </p>
+          </div>
+
+          <div class="contact-info-block">
+            <h3>KakaoTalk</h3>
+            <p>
+              <span class="en-only">Message Zacc Kim directly on KakaoTalk — the preferred channel for Korean-speaking patients and families.</span>
+              <span class="ko-only">카카오톡으로 김한수 원장에게 직접 문의하세요 — 한국어 환자 및 가족분들께 적합한 채널입니다.</span>
+            </p>
+            <button
+              class="kakao-btn"
+              aria-disabled="true"
+              title="KakaoTalk link coming soon"
+              data-placeholder="kakaotalk-url"
+              style="width:100%;cursor:not-allowed"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C7.03 3 3 6.36 3 10.5c0 2.75 1.77 5.16 4.43 6.55-.19.71-.71 2.59-.81 2.99 0 0-.01.08.04.11.05.03.11 0 .11 0 .14-.02 3.32-2.18 3.73-2.46.48.07.98.11 1.5.11 4.97 0 9-3.36 9-7.5S16.97 3 12 3z"/></svg>
+              <span class="en-only">KakaoTalk (Coming soon)</span>
+              <span class="ko-only">카카오톡으로 문의 (준비 중)</span>
+            </button>
+          </div>
+
+          <div class="contact-info-block">
+            <h3>
+              <span class="en-only">Service Area</span>
+              <span class="ko-only">서비스 지역</span>
+            </h3>
+            <p style="font-size:var(--text-body-sm)">
+              <span class="en-only">Serving nursing homes, retirement villages, and private homes across Australia.</span>
+              <span class="ko-only">호주 전역의 요양원, 은퇴 마을, 자택을 대상으로 방문 진료 서비스를 제공합니다.</span>
+            </p>
+            <p style="font-size:var(--text-body-sm);color:var(--color-text-muted)">
+              <span class="en-only">Mobile / home-visit practice — no clinic location to visit.</span>
+              <span class="ko-only">방문 진료 전문 — 별도의 의원 위치 없음.</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="home.html" class="footer-logo">TCM The Present</a>
+        <p class="footer-tagline">
+          <span class="en-only">Visiting nursing homes, retirement villages, and homes across Australia.</span>
+          <span class="ko-only">전국 요양원, 은퇴 마을, 자택을 방문하는 한의원입니다.</span>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-only">Navigation</span><span class="ko-only">메뉴</span></h4>
+        <ul>
+          <li><a href="home.html"><span class="en-only">Home</span><span class="ko-only">홈</span></a></li>
+          <li><a href="clinic.html"><span class="en-only">Clinic Introduction</span><span class="ko-only">의원 소개</span></a></li>
+          <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+          <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+          <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-only">Contact</span><span class="ko-only">연락처</span></h4>
+        <p style="color:var(--color-accent-light);font-size:var(--text-body-sm)">+61 4XX XXX XXX <span class="en-only">(to be confirmed)</span><span class="ko-only">(확인 예정)</span></p>
+        <div class="footer-lang-toggle" style="margin-top:16px">
+          <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+          <span style="color:rgba(255,255,255,0.3);padding:0 4px">/</span>
+          <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">한국어</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TCM The Present. <span class="en-only">All rights reserved.</span><span class="ko-only">모든 권리 보유.</span></p>
+      <p>Web design by <a href="https://connectyourway.au" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5)">CYW</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn  = document.getElementById('mobile-nav-close');
+  function openNav() { mobileNav.classList.add('is-open'); hamburger.setAttribute('aria-expanded','true'); closeBtn.focus(); }
+  function closeNav() { mobileNav.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); hamburger.focus(); }
+  hamburger?.addEventListener('click', openNav);
+  closeBtn?.addEventListener('click', closeNav);
+  mobileNav?.addEventListener('click', e => { if (e.target === mobileNav) closeNav(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  // Contact form (preview simulation — no actual API call)
+  const form = document.getElementById('contact-form');
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error-state');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function resetForm() {
+    successEl.style.display = 'none';
+    form.style.display = '';
+    form.reset();
+  }
+  window.resetForm = resetForm;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    ['name','email','message'].forEach(id => {
+      document.getElementById(id + '-error').style.display = 'none';
+    });
+    errorEl.style.display = 'none';
+
+    let valid = true;
+    const name    = document.getElementById('name').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name)    { document.getElementById('name-error').style.display = 'block';    valid = false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+                  { document.getElementById('email-error').style.display = 'block';   valid = false; }
+    if (!message) { document.getElementById('message-error').style.display = 'block'; valid = false; }
+
+    if (!valid) return;
+
+    // Simulate network delay → success (preview only)
+    submitBtn.disabled = true;
+    const labelEl = document.getElementById('submit-label');
+    const origHTML = labelEl.innerHTML;
+    labelEl.innerHTML = '<span class="en-only">Sending…</span><span class="ko-only">전송 중…</span>';
+    // Re-apply i18n (the new spans need to pick up current language)
+    try {
+      const lang = localStorage.getItem('tcm-lang') || 'en';
+      labelEl.querySelectorAll('.ko-only').forEach(el => { el.style.display = lang === 'ko' ? 'inline' : 'none'; });
+      labelEl.querySelectorAll('.en-only').forEach(el => { el.style.display = lang === 'ko' ? 'none' : 'inline'; });
+    } catch(e) {}
+
+    await new Promise(r => setTimeout(r, 800));
+    form.style.display = 'none';
+    successEl.style.display = 'block';
+    successEl.focus();
+    submitBtn.disabled = false;
+    labelEl.innerHTML = origHTML;
+  });
+</script>
+</body>
+</html>

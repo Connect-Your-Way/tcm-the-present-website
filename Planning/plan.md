@@ -56,7 +56,8 @@ structural and branding decisions in the 1 July meeting.
    layout/card/expandable structure, remove the star ratings, drop the demo reviews.
    Also remove the Home testimonials block.
 2. Rename the nav item Testimonials → **The Present Journal**.
-3. Add a dedicated **Clinical Case Library** page.
+3. Add a dedicated **Clinical Case Library** page — new bilingual routes `/en/clinical-cases`
+   and `/ko/clinical-cases`, plus a nav item in **both** languages.
 4. Move the **Treatment Areas** modality cards from Clinic Introduction onto the Home page.
 5. Rebuild **Clinic Introduction** around the Home Visit Service content.
 6. Add an **Instagram** link section.
@@ -120,7 +121,7 @@ All source files live in
 | `clinical_philosophy.png` | About → Clinical Philosophy section |
 | `clinical_case_library.png` | Clinical Case Library page |
 | `the_present_journal.png` | The Present Journal page banner |
-| `conditions_we_treat.png` | Spare — reuse as a Clinic Introduction section image |
+| `conditions_we_treat.png` (2 variants) | Two images available — pick one to reuse as a Clinic Introduction section image |
 
 ### Resulting sitemap
 1. **Home** — hero → Treatment Areas → CTA.
@@ -134,12 +135,12 @@ All source files live in
 
 | # | Milestone | Depends on | Owner |
 |---|---|---|---|
-| **M1** | Approve this plan; create per-document EN/KO Markdown files | — | CYW |
-| **M2** | Global branding pass — sky-blue palette, real logo, name/service-area renames | M1 | CYW |
+| **M1** | ~~Approve this plan~~ ✅ **Approved 2026-07-01**; create per-document EN/KO Markdown files | — | CYW |
+| **M2** | Global branding pass — sky-blue palette (per [`SKYBLUE-CONTRAST-PLAN.md`](../workflows/01-planning/design/ui/SKYBLUE-CONTRAST-PLAN.md), verify WCAG 2.2 AA after re-skin), real logo (left of wordmark, 36px max-height on mobile), name/service-area renames | M1 | CYW |
 | **M3** | Restructure nav & pages — repurpose Testimonials → Journal (reuse structure, drop star ratings), add Clinical Case Library, move Treatment Areas to Home, rebuild Clinic Introduction | M1 | CYW |
 | **M4** | Populate content from the EN/KO Markdown files; CYW translations (My Story, Qualifications, Clinical Cases) | M2, M3 | CYW |
 | **M5** | Wire contact channels (phone, KakaoTalk, Instagram) and Clinical Philosophy section | Client assets | CYW + client |
-| **M6** | Internal QA — bilingual parity, links, disclaimer present on both case pages | M4, M5 | CYW |
+| **M6** | Internal QA — bilingual parity, links, disclaimer present on the Clinical Case Library page in **both EN and KO** language states | M4, M5 | CYW |
 | **M7** | Preview review with client (Tue 2026-07-07) | M6 | Both |
 | **M8** | Sign-off → domain purchase → launch | M7 approval | CYW |
 

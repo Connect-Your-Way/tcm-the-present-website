@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About the Practitioner — TCM The Present · UI Design Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="corrections.css">
+  <script>try{var _l=localStorage.getItem('tcm-lang')||'en';document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}catch(e){}</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="container inner">
+    <a href="home.html" class="logo">TCM The Present<span>더 프레젠트 한의원</span></a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav">
+        <li><a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a></li>
+        <li><a href="about.html" aria-current="page"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+        <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+        <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle" role="group" aria-label="Select language">
+        <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+      </div>
+      <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" id="hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="clinic.html"><span class="en-only">Clinic</span><span class="ko-only">의원 소개</span></a>
+    <a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a>
+    <a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a>
+    <a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a>
+    <div class="lang-toggle" style="margin-top:16px" role="group" aria-label="Select language">
+      <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+      <span class="lang-divider">/</span>
+      <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">KO</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:16px;width:100%;justify-content:center">
+      <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+    </a>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <!-- PAGE HERO (bilingual inline — compact hero for inner page) -->
+  <section class="page-section page-hero" aria-labelledby="about-hero-heading" style="background:var(--color-bg);border-bottom:1px solid var(--color-border)">
+    <div class="container">
+      <span class="eyebrow">
+        <span class="en-only">About the Practitioner</span>
+        <span class="ko-only">의사 소개</span>
+      </span>
+      <h1 id="about-hero-heading" style="max-width:640px;margin-bottom:var(--space-md)">
+        <span class="en-only">Zacc (Hansoo) Kim, TCM Practitioner</span>
+        <span class="ko-only">김한수 원장 — 한의사</span>
+      </h1>
+      <p style="font-size:var(--text-body-xl);max-width:600px;color:var(--color-text-body)">
+        <span class="en-only">Zacc brings specialist traditional Chinese medicine to Australia's aged-care communities — meeting patients where they are.</span>
+        <span class="ko-only">김한수 원장은 호주 전역의 노인 의료 커뮤니티를 직접 방문하여 전문 한의 치료를 제공합니다.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- PORTRAIT + BIO -->
+  <section class="page-section" style="background:var(--color-white)" aria-labelledby="bio-heading">
+    <div class="container">
+      <div class="portrait-bio-grid">
+        <!-- Portrait (placeholder photo — same in both languages) -->
+        <div>
+          <div class="blob-wrap blob-portrait">
+            <img
+              class="blob-img"
+              src="https://picsum.photos/seed/tcm-practitioner/400/520"
+              alt="Photo of Zacc (Hansoo) Kim — coming soon"
+              data-placeholder="profile-photo"
+              width="400" height="520"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <!-- Bio + qualifications -->
+        <div>
+          <h2 id="bio-heading" style="margin-bottom:var(--space-lg)">
+            <span class="en-only">Personal Story &amp; Background</span>
+            <span class="ko-only">개인 이야기 및 이력</span>
+          </h2>
+          <div class="placeholder-block" data-placeholder="practitioner-bio" style="margin-bottom:var(--space-lg)">
+            <p>
+              <span class="en-only">Practitioner biography coming soon.</span>
+              <span class="ko-only">한의사 이력 및 소개 내용 준비 중입니다.</span>
+            </p>
+            <p style="margin-top:8px;font-size:var(--text-body-sm)">
+              <em>
+                <span class="en-only">This placeholder will be replaced with Zacc Kim's personal story, background, and journey to becoming a TCM practitioner once provided.</span>
+                <span class="ko-only">김한수 원장님의 개인 이야기와 한의사로 걸어온 여정을 제공해 주시면 이 자리에 표시됩니다.</span>
+              </em>
+            </p>
+          </div>
+          <h3 style="margin-bottom:var(--space-md);font-size:var(--text-h3)">
+            <span class="en-only">Qualifications &amp; Credentials</span>
+            <span class="ko-only">자격 및 경력</span>
+          </h3>
+          <div class="placeholder-block" data-placeholder="practitioner-qualifications">
+            <p>
+              <span class="en-only">Qualifications and credentials coming soon.</span>
+              <span class="ko-only">학력, 자격증 및 임상 경력 내용 준비 중입니다.</span>
+            </p>
+            <p style="margin-top:8px;font-size:var(--text-body-sm)">
+              <em>
+                <span class="en-only">Academic qualifications, professional registrations, and years of clinical experience will appear here.</span>
+                <span class="ko-only">학위, 전문 등록, 임상 경력 연수가 이 자리에 표시될 예정입니다.</span>
+              </em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔═══════ EN CLINICAL PHILOSOPHY ═══════╗ -->
+  <section class="page-section en-only" style="background:var(--color-accent-subtle)" aria-labelledby="philosophy-heading-en">
+    <div class="container" style="max-width:820px">
+      <div class="section-heading" style="text-align:left;margin-bottom:var(--space-xl)">
+        <span class="eyebrow">His approach to care</span>
+        <h2 id="philosophy-heading-en">Clinical Philosophy</h2>
+      </div>
+      <div style="font-size:var(--text-body-lg);color:var(--color-text-body);line-height:1.8">
+        <p>This section will display Zacc Kim's full clinical philosophy — sourced from the provided DOCX file (<em>진료 철학_260626_174559.docx</em>). The English version is ready and will be structured as multi-paragraph prose.</p>
+        <p>The philosophy will cover his holistic approach to patient care, his belief in the complementary role of TCM alongside Western medicine, and his particular dedication to serving elderly patients who may have difficulty accessing clinic-based healthcare.</p>
+        <p style="color:var(--color-text-muted);font-size:var(--text-body);font-style:italic;margin-top:var(--space-xl)">[Full English clinical philosophy from DOCX will appear here — content ready, awaiting software-engineer extraction at M04.]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔═══════ KO CLINICAL PHILOSOPHY ═══════╗ -->
+  <section class="page-section ko-only" style="background:var(--color-accent-subtle)" aria-labelledby="philosophy-heading-ko">
+    <div class="container" style="max-width:820px">
+      <div class="section-heading" style="text-align:left;margin-bottom:var(--space-xl)">
+        <span class="eyebrow">진료 철학</span>
+        <h2 id="philosophy-heading-ko">한의 진료 철학</h2>
+      </div>
+      <div style="font-size:var(--text-body-lg);color:var(--color-text-body);line-height:1.8">
+        <p>이 섹션에는 김한수 원장의 진료 철학 전문이 표시됩니다. 제공된 DOCX 파일(<em>진료 철학_260626_174559.docx</em>)의 한국어 버전에서 추출될 예정입니다.</p>
+        <p>전인적 환자 케어에 대한 접근 방식, 한의학과 서양 의학의 상호 보완적 역할에 대한 신념, 그리고 의료 기관 방문이 어려운 어르신 환자를 위한 헌신이 담겨 있을 예정입니다.</p>
+        <p style="color:var(--color-text-muted);font-size:var(--text-body);font-style:italic;margin-top:var(--space-xl)">[한국어 진료 철학 전문은 M04 단계에서 소프트웨어 엔지니어가 DOCX에서 추출 예정입니다.]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip cta-strip--green" aria-label="Contact call to action">
+    <div class="container">
+      <p>
+        <span class="en-only">Ready to book a consultation? We'd love to hear from you.</span>
+        <span class="ko-only">진료 예약을 원하십니까? 언제든지 연락 주세요.</span>
+      </p>
+      <a href="contact.html" class="btn btn-white">
+        <span class="en-only">Contact Us</span><span class="ko-only">문의하기</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="home.html" class="footer-logo">TCM The Present</a>
+        <p class="footer-tagline">
+          <span class="en-only">Visiting nursing homes, retirement villages, and homes across Australia.</span>
+          <span class="ko-only">전국 요양원, 은퇴 마을, 자택을 방문하는 한의원입니다.</span>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-only">Navigation</span><span class="ko-only">메뉴</span></h4>
+        <ul>
+          <li><a href="home.html"><span class="en-only">Home</span><span class="ko-only">홈</span></a></li>
+          <li><a href="clinic.html"><span class="en-only">Clinic Introduction</span><span class="ko-only">의원 소개</span></a></li>
+          <li><a href="about.html"><span class="en-only">About</span><span class="ko-only">의사 소개</span></a></li>
+          <li><a href="testimonials.html"><span class="en-only">Testimonials</span><span class="ko-only">환자 후기</span></a></li>
+          <li><a href="contact.html"><span class="en-only">Contact</span><span class="ko-only">문의하기</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-only">Contact</span><span class="ko-only">연락처</span></h4>
+        <p style="color:var(--color-accent-light);font-size:var(--text-body-sm)">+61 4XX XXX XXX <span class="en-only">(to be confirmed)</span><span class="ko-only">(확인 예정)</span></p>
+        <div class="footer-lang-toggle" style="margin-top:16px">
+          <button class="lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+          <span style="color:rgba(255,255,255,0.3);padding:0 4px">/</span>
+          <button class="lang-btn" data-lang-btn="ko" aria-pressed="false">한국어</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TCM The Present. <span class="en-only">All rights reserved.</span><span class="ko-only">모든 권리 보유.</span></p>
+      <p>Web design by <a href="https://connectyourway.au" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5)">CYW</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn  = document.getElementById('mobile-nav-close');
+  function openNav() { mobileNav.classList.add('is-open'); hamburger.setAttribute('aria-expanded','true'); closeBtn.focus(); }
+  function closeNav() { mobileNav.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); hamburger.focus(); }
+  hamburger?.addEventListener('click', openNav);
+  closeBtn?.addEventListener('click', closeNav);
+  mobileNav?.addEventListener('click', e => { if (e.target === mobileNav) closeNav(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+</body>
+</html>

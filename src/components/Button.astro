@@ -5,7 +5,7 @@
  */
 
 export interface Props {
-  variant: "primary" | "secondary" | "ghost";
+  variant: "primary" | "secondary" | "ghost" | "cream";
   href: string;
   label: string;
   ariaLabel?: string;
@@ -67,6 +67,22 @@ const { variant, href, label, ariaLabel } = Astro.props;
     background: var(--color-primary);
     color: var(--color-white);
     outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+  }
+
+  /* Creamy CTA button — used on the coloured CTA strip above the footer. */
+  .btn--cream {
+    background: var(--color-cta-button);
+    color: var(--color-text-heading);
+    border: 2px solid var(--color-cta-button);
+  }
+
+  .btn--cream:hover,
+  .btn--cream:focus-visible {
+    background: var(--color-cta-button-hover);
+    border-color: var(--color-cta-button-hover);
+    color: var(--color-text-heading);
+    outline: 2px solid var(--color-white);
     outline-offset: 2px;
   }
 

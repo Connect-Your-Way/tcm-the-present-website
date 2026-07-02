@@ -7,31 +7,36 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  /* ── Colours: Primary greens ─── */
-  --color-primary: #00684a;
-  --color-primary-dark: #001e2b;
-  --color-primary-mid: #00a35c;
+  /* ── Colours: Primary (blue theme; was greens — see git history / SKYBLUE-CONTRAST-PLAN.md) ─── */
+  --color-primary: #005F8E;       /* was #00684a */
+  --color-primary-dark: #001e2b;  /* unchanged (headings); footer uses --color-footer-bg */
+  --color-primary-mid: #0077AA;   /* was #00a35c */
 
-  /* ── Colours: Accent greens ─── */
-  --color-accent: #00ed64;
-  --color-accent-light: #c3f0d2;
-  --color-accent-subtle: #edf2e2;
+  /* ── Colours: Accent (blue theme) ─── */
+  --color-accent: #00B4D8;        /* was #00ed64 */
+  --color-accent-light: #BAE6FD;  /* was #c3f0d2 */
+  --color-accent-subtle: #F0F9FF; /* was #edf2e2 */
 
   /* ── Colours: Neutrals and text ─── */
   --color-bg: #faf9f3;
-  --color-bg-alt: #edf2e2;
+  --color-bg-alt: #F0F9FF;
   --color-text-heading: #001e2b;
   --color-text-body: #3d4a52;
   --color-text-muted: #5a6573;
   --color-white: #ffffff;
-  --color-border: #d8e8dc;
+  --color-border: #BAD5E8;         /* was #d8e8dc */
+
+  /* ── Colours: Surfaces (blue theme) ─── */
+  --color-footer-bg: #0A2540;        /* pure dark navy — no green tint (footer bg) */
+  --color-cta-button: #F4E7CB;       /* creamy CTA-strip button fill */
+  --color-cta-button-hover: #ECDCB4; /* creamy button hover */
 
   /* ── Colours: Semantic / status ─── */
-  --color-star: #f4b400;
+  --color-star: #B06A00;
   --color-error: #c0392b;
-  --color-success: #00684a;
-  --color-placeholder-bg: #f0f4f0;
-  --color-placeholder-text: #7a8a82;
+  --color-success: #005F8E;
+  --color-placeholder-bg: #EFF8FF;
+  --color-placeholder-text: #5a6573;
   /* Accessible variant for small text on --color-placeholder-bg (#f0f4f0): ~6.3:1 ratio (WCAG AA). */
   --color-placeholder-text-accessible: #4a5e55;
 
