@@ -513,7 +513,7 @@ li.ko-only { display: none; }
 
 /* ── Testimonial accordion ────────────────────────────────── */
 .testimonials-list {
-  max-width: 760px;
+  max-width: none;
   margin-inline: auto;
   display: flex;
   flex-direction: column;

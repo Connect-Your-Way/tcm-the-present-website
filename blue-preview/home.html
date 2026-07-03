@@ -84,8 +84,8 @@
           <div class="blob-wrap">
             <img
               class="blob-img"
-              src="https://picsum.photos/seed/tcm-hero/600/450"
-              alt="TCM practitioner with elderly patient"
+              src="brought_to_your_door.png"
+              alt="TCM practitioner bringing care to a patient's home"
               width="600" height="450" loading="eager"
             >
           </div>
@@ -111,8 +111,8 @@
           <div class="blob-wrap">
             <img
               class="blob-img"
-              src="https://picsum.photos/seed/tcm-hero/600/450"
-              alt="한의사와 어르신 환자"
+              src="brought_to_your_door.png"
+              alt="한의사가 환자를 방문하는 모습"
               width="600" height="450" loading="eager"
             >
           </div>
@@ -140,72 +140,142 @@
     </div>
   </section>
 
-  <!-- TREATMENT AREAS (moved from clinic.html) -->
+  <!-- TREATMENT AREAS -->
   <section class="page-section" style="background:var(--color-bg-alt)" aria-labelledby="treatments-heading">
     <div class="container">
-      <div class="section-heading">
-        <h2 id="treatments-heading">
-          <span class="en-only">Treatment Areas</span>
-          <span class="ko-only">진료 분야</span>
-        </h2>
-        <p>
-          <span class="en-only">Bilingual treatment listings — final content from client. Placeholder names shown below.</span>
-          <span class="ko-only">진료 분야 목록 — 최종 내용은 고객 제공 예정입니다.</span>
-        </p>
-      </div>
-      <div class="card-grid">
-        <!-- Each card shows EN primary h3 + KO lang-alt always (bilingual-by-design pattern) -->
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg>
-          <h3><span class="en-only">Acupuncture</span><span class="ko-only">침술</span></h3>
-          <span class="lang-alt en-only">침술</span>
-          <span class="lang-alt ko-only" style="display:none">Acupuncture</span>
-          <p><span class="en-only">Traditional needle therapy to restore the flow of Qi, reduce pain, and promote healing throughout the body.</span><span class="ko-only">기(氣)의 흐름을 회복하고 통증을 줄이며 전신 치유를 촉진하는 전통 침 치료.</span></p>
-        </article>
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-          <h3><span class="en-only">Herbal Medicine</span><span class="ko-only">한약</span></h3>
-          <span class="lang-alt en-only">한약</span>
-          <span class="lang-alt ko-only" style="display:none">Herbal Medicine</span>
-          <p><span class="en-only">Personalised herbal formulas prepared to support your specific constitution and health condition, sourced from traditional pharmacopoeia.</span><span class="ko-only">개인 체질과 건강 상태에 맞춘 맞춤 한약 처방. 전통 약전에서 약재를 조제합니다.</span></p>
-        </article>
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          <h3><span class="en-only">Moxibustion</span><span class="ko-only">뜸</span></h3>
-          <span class="lang-alt en-only">뜸</span>
-          <span class="lang-alt ko-only" style="display:none">Moxibustion</span>
-          <p><span class="en-only">Heat therapy using dried mugwort to warm and stimulate specific acupoints, particularly effective for cold and deficiency conditions.</span><span class="ko-only">건조 쑥을 이용한 열 치료로 특정 경혈을 자극. 한증(寒證)과 허증(虛證)에 특히 효과적.</span></p>
-        </article>
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-          <h3><span class="en-only">Cupping</span><span class="ko-only">부항</span></h3>
-          <span class="lang-alt en-only">부항</span>
-          <span class="lang-alt ko-only" style="display:none">Cupping</span>
-          <p><span class="en-only">Suction cup therapy to increase circulation, release muscle tension, and draw out toxins from the superficial fascia.</span><span class="ko-only">흡착 컵 치료로 혈액 순환을 높이고 근육 긴장을 풀며 표층 근막의 독소를 배출합니다.</span></p>
-        </article>
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
-          <h3><span class="en-only">Tui Na Massage</span><span class="ko-only">추나 마사지</span></h3>
-          <span class="lang-alt en-only">추나 마사지</span>
-          <span class="lang-alt ko-only" style="display:none">Tui Na Massage</span>
-          <p><span class="en-only">Chinese therapeutic massage using rhythmic compression and manipulation to relieve musculoskeletal tension and improve mobility.</span><span class="ko-only">리드미컬한 압박과 조작 기법을 사용하는 중국식 치료 마사지. 근골격 긴장 해소 및 이동성 향상.</span></p>
-        </article>
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          <h3><span class="en-only">Pain Management</span><span class="ko-only">통증 관리</span></h3>
-          <span class="lang-alt en-only">통증 관리</span>
-          <span class="lang-alt ko-only" style="display:none">Pain Management</span>
-          <p><span class="en-only">Comprehensive TCM protocols for acute and chronic pain, combining acupuncture, herbal medicine, and manual therapies.</span><span class="ko-only">침술, 한약, 수기 치료를 결합한 급·만성 통증 종합 한의 프로토콜.</span></p>
-        </article>
-        <article class="card">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-          <h3><span class="en-only">Aged Care &amp; Rehabilitation</span><span class="ko-only">노인 돌봄 및 재활</span></h3>
-          <span class="lang-alt en-only">노인 돌봄 및 재활</span>
-          <span class="lang-alt ko-only" style="display:none">Aged Care &amp; Rehabilitation</span>
-          <p><span class="en-only">Specialist TCM services for elderly patients in nursing homes and retirement villages, including post-stroke rehabilitation and dementia support.</span><span class="ko-only">요양원·은퇴 마을 어르신 전문 한의 서비스. 뇌졸중 후 재활 및 치매 지원 포함.</span></p>
-        </article>
-      </div>
-    </div>
+      <div class="treatments-layout">
+
+        <!-- Centered heading + intro above both rows -->
+        <div class="treatments-header">
+          <h2 id="treatments-heading">
+            <span class="en-only">Treatment Areas</span>
+            <span class="ko-only">진료 분야</span>
+          </h2>
+          <p>
+            <span class="en-only">Specialist TCM care across seven clinical areas, delivered in the comfort of your home.</span>
+            <span class="ko-only">7개 전문 진료 분야에서 방문 한의 진료를 제공합니다.</span>
+          </p>
+        </div>
+
+        <!-- ╔ ROW 1 — cards 1–3 + acupuncture image ╗ -->
+        <div class="treatments-top-band">
+
+          <!-- Image — first cell of row 1 -->
+          <div class="treatments-img-cell">
+            <img
+              src="acupuncture.png"
+              alt="Acupuncture treatment in traditional Chinese medicine"
+              width="600" height="600"
+              loading="lazy"
+            >
+          </div>
+
+          <!-- 1. Women's Health -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M12 12v9"/>
+              <path d="M9 18h6"/>
+              <path d="M8 6c0 0 1-3 4-3s4 3 4 3"/>
+            </svg>
+            <h3><span class="en-only">Women's Health</span><span class="ko-only">한방 부인과</span></h3>
+            <span class="lang-alt en-only">한방 부인과</span>
+            <span class="lang-alt ko-only" style="display:none">Women's Health</span>
+            <p><span class="en-only">Specialised care for menstrual disorders, uterine conditions, fertility support, menopausal symptoms, and urinary incontinence.</span><span class="ko-only">생리관련질환, 자궁질환, 불임치료 서포트, 폐경기 질환들, 요실금 등 여성 건강을 전문적으로 치료합니다.</span></p>
+          </article>
+
+          <!-- 2. Dermatology -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M18 11V7a6 6 0 00-12 0v4"/>
+              <path d="M6 11c0 4 2.5 7 6 8"/>
+              <path d="M18 11c0 4-2.5 7-6 8"/>
+              <path d="M12 19v2"/>
+            </svg>
+            <h3><span class="en-only">Dermatology</span><span class="ko-only">한방 피부과</span></h3>
+            <span class="lang-alt en-only">한방 피부과</span>
+            <span class="lang-alt ko-only" style="display:none">Dermatology</span>
+            <p><span class="en-only">Traditional Chinese medicine approaches to atopic dermatitis (eczema), allergic skin conditions, and excessive sweating of the hands and feet.</span><span class="ko-only">아토피 피부염, 알러지성 피부 질환, 손발의 땀 과다 등을 한방으로 치료합니다.</span></p>
+          </article>
+
+          <!-- 3. Internal Medicine -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 3C8 3 5 6.5 5 10c0 2.5 1.5 4.5 3 6l1 5h6l1-5c1.5-1.5 3-3.5 3-6 0-3.5-3-7-7-7z"/>
+              <path d="M9 14c1 1 2 1.5 3 1.5s2-.5 3-1.5"/>
+            </svg>
+            <h3><span class="en-only">Internal Medicine</span><span class="ko-only">한방 내과</span></h3>
+            <span class="lang-alt en-only">한방 내과</span>
+            <span class="lang-alt ko-only" style="display:none">Internal Medicine</span>
+            <p><span class="en-only">Treatment for cold hands and feet, anaemia, digestive disorders, immune system support, energy restoration, and supportive care during cancer treatment.</span><span class="ko-only">수족냉증, 빈혈, 소화기 질환, 면역력 증진, 원기회복과 식욕증진, 항암치료 서포트 등 내과 질환을 다룹니다.</span></p>
+          </article>
+
+        </div><!-- /treatments-top-band -->
+
+        <!-- ╔ ROW 2 — cards 4–7 ╗ -->
+        <div class="treatments-bottom-band">
+
+          <!-- 4. Paediatrics -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="6" r="3"/>
+              <path d="M12 9v6"/>
+              <path d="M9 12l-2 5"/>
+              <path d="M15 12l2 5"/>
+              <path d="M9 21h6"/>
+            </svg>
+            <h3><span class="en-only">Paediatrics</span><span class="ko-only">한방 소아과</span></h3>
+            <span class="lang-alt en-only">한방 소아과</span>
+            <span class="lang-alt ko-only" style="display:none">Paediatrics</span>
+            <p><span class="en-only">Supporting children's health through growth and developmental delays, bedwetting (nocturnal enuresis), and recurrent colds.</span><span class="ko-only">성장·발육 지연, 야뇨증, 잦은 감기 등 소아 건강 문제를 한방으로 지원합니다.</span></p>
+          </article>
+
+          <!-- 5. Urology -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 3c-1.5 3-3 5.5-3 8a3 3 0 006 0c0-2.5-1.5-5-3-8z"/>
+              <path d="M12 14v7"/>
+              <path d="M9 19h6"/>
+            </svg>
+            <h3><span class="en-only">Urology</span><span class="ko-only">한방 비뇨기과</span></h3>
+            <span class="lang-alt en-only">한방 비뇨기과</span>
+            <span class="lang-alt ko-only" style="display:none">Urology</span>
+            <p><span class="en-only">Care for urinary disorders, urinary tract infections (UTIs), and overactive bladder using traditional Chinese medicine.</span><span class="ko-only">소변장애, 요로감염, 과민성 방광 등 비뇨기 질환을 한방으로 치료합니다.</span></p>
+          </article>
+
+          <!-- 6. Pain Management -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"/>
+            </svg>
+            <h3><span class="en-only">Pain Management</span><span class="ko-only">한방 통증의학</span></h3>
+            <span class="lang-alt en-only">한방 통증의학</span>
+            <span class="lang-alt ko-only" style="display:none">Pain Management</span>
+            <p><span class="en-only">Effective relief for acute and chronic pain, cancer-related pain, and neuralgia (nerve pain) using acupuncture and other TCM techniques.</span><span class="ko-only">급·만성 통증, 암성 통증, 신경통을 침술 등 한방 기법으로 효과적으로 치료합니다.</span></p>
+          </article>
+
+          <!-- 7. Geriatric Care -->
+          <article class="treatment-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="5" r="2.5"/>
+              <path d="M12 7.5v6"/>
+              <path d="M9 10l-3 8h12l-3-8"/>
+              <path d="M9 17l-1.5 4"/>
+              <path d="M15 17l1.5 4"/>
+              <path d="M6.5 21c0 0 1-2.5 1-2.5"/>
+              <path d="M17.5 21c0 0-1-2.5-1-2.5"/>
+              <path d="M5 14l-2 3"/>
+            </svg>
+            <h3><span class="en-only">Geriatric Care</span><span class="ko-only">한방 노인과</span></h3>
+            <span class="lang-alt en-only">한방 노인과</span>
+            <span class="lang-alt ko-only" style="display:none">Geriatric Care</span>
+            <p><span class="en-only">Specialised TCM for elderly patients in aged-care settings: chronic pain, chronic cough, mobility difficulties, reduced vitality, and rehabilitation support.</span><span class="ko-only">만성 통증, 만성 기침, 보행 불편, 체력 저하, 재활 관리 등 노인 환자를 위한 전문 한방 치료를 요양 시설에서 제공합니다.</span></p>
+          </article>
+
+        </div><!-- /treatments-bottom-band -->
+
+      </div><!-- /treatments-layout -->
+    </div><!-- /container -->
   </section>
 
   <!-- CTA STRIP -->
