@@ -12,95 +12,6 @@
   <link rel="stylesheet" href="corrections.css">
   <!-- Apply language preference before DOM renders (prevents flash of wrong language) -->
   <script>try{var _l=localStorage.getItem('tcm-lang')||'en';document.documentElement.setAttribute('data-lang',_l);document.documentElement.lang=_l;}catch(e){}</script>
-  <style>
-    /*
-     * ─── Journal hero image — zoomed fill inside the blob frame ───────────────
-     *
-     * Problem: the_present_journal.png is 16:9 (1672×941). The blob container
-     * is 4:3. With plain object-fit:cover the image only fills ~75% of the
-     * container height — leaving a flat/empty strip at the bottom of the blob.
-     * The baked-in "THE PRESENT JOURNAL" text is also off-centre as a result.
-     *
-     * Technique: move the clip-path (and overflow:hidden) to the .blob-wrap
-     * wrapper itself so the blob outline is unchanged. The <img> inside is then
-     * free to be zoomed and repositioned without distorting the blob shape.
-     *
-     * The blob shadow (::before) continues to use clip-path on the pseudo-element
-     * exactly as before — no change there.
-     *
-     * Two tunable values — edit these to fine-tune:
-     *   --j-zoom   : how much the image is scaled up inside the frame.
-     *                1.0 = no zoom (will show empty bottom). ~1.35 fills the
-     *                blob fully. Increase to crop tighter; decrease to show more.
-     *   --j-pos-y  : vertical position of the baked title within the frame.
-     *                50% = centred. Increase to slide the image upward (shows
-     *                more of the bottom); decrease to slide it downward.
-     *
-     * The Clinic hero (.blob-wrap without .journal-blob) is completely unaffected.
-     */
-
-    /* ── TUNABLE VALUES ──────────────────────────── */
-    :root {
-      --j-zoom:  1.20;   /* zoom factor — increase to fill more / crop tighter  */
-      --j-pos-y: 40%;    /* vertical anchor of the baked title — 50% = centred  */
-    }
-    /* ─────────────────────────────────────────────── */
-
-    /* Clip the wrapper, not the image — same organic blob path as the Clinic.
-     * CRITICAL: set max-width + aspect-ratio to match the Clinic's .blob-img box
-     * (520px × 4/3 ≈ 520×390px). The path() uses absolute px coords authored for
-     * that box — if the wrapper is a different size the outline looks different. */
-    .journal-blob {
-      max-width: 520px;      /* match .blob-wrap max-width */
-      aspect-ratio: 4 / 3;  /* match .blob-img aspect-ratio — forces ~520×390px */
-      clip-path: path('M350,30 C430,15 520,60 540,140 C560,220 520,330 430,370 C340,410 210,410 130,360 C50,310 20,200 50,120 C80,40 180,10 260,20 C295,24 325,34 350,30 Z');
-      overflow: hidden;  /* belt + braces: clips anything the path() misses      */
-    }
-
-    /* Image fills the wrapper completely (overrides base.css aspect-ratio on img),
-     * then zooms in via transform — the clip is on the wrapper, not the img */
-    .journal-blob .blob-img {
-      /* Remove the clip-path from the img — clipping is now on the wrapper */
-      clip-path: none;
-      border-radius: 0;
-      /* Fill the 520×390 wrapper box exactly */
-      width: 100%;
-      height: 100%;
-      aspect-ratio: unset;   /* override base.css img aspect-ratio: unset here */
-      object-fit: cover;
-      object-position: center var(--j-pos-y);
-      /* Scale up WITHIN the clipped wrapper; transform-origin anchors to centre */
-      transform: translate(5px, 45px) scale(var(--j-zoom));
-      transform-origin: center var(--j-pos-y);
-    }
-
-    /* Shadow blob — path unchanged; lives on ::before of the wrapper */
-    .journal-blob::before {
-      clip-path: path('M350,30 C430,15 520,60 540,140 C560,220 520,330 430,370 C340,410 210,410 130,360 C50,310 20,200 50,120 C80,40 180,10 260,20 C295,24 325,34 350,30 Z');
-      border-radius: 0;
-    }
-
-    /* Fallback for browsers without path() clip-path */
-    @supports not (clip-path: path('M0,0')) {
-      .journal-blob {
-        clip-path: none;
-        border-radius: 60% 40% 50% 50% / 40% 50% 60% 50%;
-      }
-      .journal-blob .blob-img {
-        transform: translate(5px, 45px) scale(var(--j-zoom));
-        transform-origin: center var(--j-pos-y);
-      }
-      .journal-blob::before {
-        clip-path: none;
-        border-radius: 60% 40% 50% 50% / 40% 50% 60% 50%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .journal-blob .blob-img,
-      .journal-blob::before { transition: none !important; }
-    }
-  </style>
 </head>
 <body>
 <!-- Skip link -->
@@ -166,8 +77,8 @@
           <p class="subheadline">Insights on traditional Chinese medicine, aged care, and the practice of bringing healing to where it is needed most.</p>
         </div>
         <div class="hero-visual">
-          <div class="blob-wrap journal-blob">
-            <img class="blob-img" src="the_present_journal.png" alt="The Present Journal — TCM The Present" width="640" height="360" loading="eager">
+          <div class="blob-wrap">
+            <img class="blob-img" src="the_present_journal.png" alt="The Present Journal — TCM The Present" width="600" height="450" loading="eager">
           </div>
         </div>
       </div>
@@ -184,8 +95,8 @@
           <p class="subheadline">전통 한의학, 노인 의료, 그리고 필요한 곳으로 치유를 가져가는 진료에 대한 이야기를 담은 저널입니다.</p>
         </div>
         <div class="hero-visual">
-          <div class="blob-wrap journal-blob">
-            <img class="blob-img" src="the_present_journal.png" alt="선물 저널 — TCM The Present" width="640" height="360" loading="eager">
+          <div class="blob-wrap">
+            <img class="blob-img" src="the_present_journal.png" alt="선물 저널 — TCM The Present" width="600" height="450" loading="eager">
           </div>
         </div>
       </div>
