@@ -335,14 +335,9 @@ body { padding-top: 72px; }
   color: var(--color-text-heading);
 }
 
-/* Bilingual alt label */
+/* Treatment cards show one language only — hide the other-language sub-label. */
 .treatment-card .lang-alt {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--color-primary);
-  font-weight: 600;
-  margin-bottom: 8px;
-  line-height: 1.2;
+  display: none;
 }
 
 /* Description */
@@ -469,12 +464,13 @@ body { padding-top: 72px; }
   font-size: var(--text-body-sm);
   font-family: var(--font-sans);
   text-decoration: none;
-  cursor: not-allowed;
+  cursor: pointer;
   width: 100%;
   justify-content: center;
-  opacity: 0.9;
-  transition: opacity var(--transition-fast);
+  opacity: 1;
+  transition: filter var(--transition-fast);
 }
+.instagram-btn:hover { filter: brightness(1.08); }
 .instagram-btn svg { color: #ffffff; flex-shrink: 0; }
 .instagram-btn:focus-visible {
   outline: 3px solid var(--color-accent);
@@ -488,7 +484,63 @@ body { padding-top: 72px; }
   color: #ffffff;
   border: none;
   text-decoration: none;
-  opacity: 0.9;
+  opacity: 1;
+}
+
+/* "Tap to call" button — WhatsApp-green, matches the Kakao/Instagram buttons.
+   tel: link opens the phone dialer on a smartphone. */
+.call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #25D366;
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-body-sm);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+  transition: filter var(--transition-fast);
+}
+.call-btn:hover { filter: brightness(0.95); }
+.footer-col a.call-btn,
+.footer-col a.call-btn:hover {
+  color: #ffffff;
+  background: #25D366;
+  text-decoration: none;
+}
+
+/* Practitioner portrait fine-tune (About page) — 20% smaller, nudged up + right */
+/* Practitioner portrait: blob frame (clip) fixed on the WRAPPER; the photo
+   is movable INSIDE the frame via the img transform below. */
+.practitioner-photo {
+  clip-path: path('M200,10 C280,-5 360,30 380,110 C400,190 370,290 290,340 C210,390 100,390 50,320 C0,250 20,140 60,70 C90,20 140,18 200,10 Z');
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  max-width: 340px;
+  margin: 0 auto;
+  transform: translate(15px, -5px) scale(0.9);   /* position/size of the whole portrait */
+}
+.practitioner-photo .blob-img {
+  clip-path: none;
+  aspect-ratio: auto;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  /* Move the photo INSIDE the frame (translateX); scale gives a little overflow so the shift leaves no gap. */
+  transform: translateX(5px) scale(1.04);
+}
+
+/* Keep the English wordmark in the display serif even in Korean mode.
+   (The broad `:lang(ko) { font-family: var(--font-ko) }` rule was overriding
+   the "TCM The Present" wordmark to the Korean sans font.) */
+.site-header .logo-text-group {
+  font-family: var(--font-display);
 }
 
 /* ── Personal Story: portrait floats RIGHT, bio text wraps around/under it ──
