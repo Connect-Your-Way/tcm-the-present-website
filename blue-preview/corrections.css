@@ -543,6 +543,20 @@ body { padding-top: 72px; }
   font-family: var(--font-display);
 }
 
+/* ── Mobile: EN/KO toggle in the header top bar (client request) ──────
+   base.css hides the header language toggle on mobile and only shows a
+   copy inside the hamburger drawer. Surface it in the header next to the
+   hamburger so it's always visible, compact it to fit alongside the logo,
+   and remove the now-duplicate toggle from the drawer. Desktop unchanged. */
+@media (max-width: 768px) {
+  .header-actions { display: flex; align-items: center; gap: 6px; }
+  .header-actions .lang-toggle { display: flex; }
+  .header-actions .lang-toggle .lang-btn { min-width: 40px; padding: 8px; }
+  .mobile-nav-inner .lang-toggle { display: none; }
+  /* Tighten the wordmark slightly so logo + toggle + hamburger fit on narrow phones */
+  .site-header .logo { font-size: 1.05rem; }
+}
+
 /* ── Personal Story: portrait floats RIGHT, bio text wraps around/under it ──
    The old rigid 2-col grid left empty space under the shorter image column.
    Switch to a float so the text flows beside the image and wraps beneath it. */
