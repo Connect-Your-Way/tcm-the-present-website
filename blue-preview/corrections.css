@@ -549,12 +549,18 @@ body { padding-top: 72px; }
    hamburger so it's always visible, compact it to fit alongside the logo,
    and remove the now-duplicate toggle from the drawer. Desktop unchanged. */
 @media (max-width: 768px) {
-  .header-actions { display: flex; align-items: center; gap: 6px; }
+  .site-header .inner { gap: 8px; }
+  .header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
   .header-actions .lang-toggle { display: flex; }
-  .header-actions .lang-toggle .lang-btn { min-width: 40px; padding: 8px; }
+  .header-actions .lang-toggle .lang-btn { min-width: 36px; padding: 8px 6px; }
   .mobile-nav-inner .lang-toggle { display: none; }
-  /* Tighten the wordmark slightly so logo + toggle + hamburger fit on narrow phones */
-  .site-header .logo { font-size: 1.05rem; }
+  /* Lock the menu button so it can never be pushed off-screen */
+  .hamburger { flex-shrink: 0; }
+  /* The LOGO yields space first (shrinks / clips its wordmark) so the toggle
+     + menu button always stay visible, even on narrow phones. */
+  .site-header .logo { font-size: 0.95rem; flex: 0 1 auto; min-width: 0; overflow: hidden; }
+  .logo-img { height: 32px; }
+  .logo-text-group { min-width: 0; overflow: hidden; }
 }
 
 /* ── Personal Story: portrait floats RIGHT, bio text wraps around/under it ──
