@@ -103,6 +103,9 @@
 
           <!-- Form submissions are delivered to this address via the backend (Resend) on deploy; not shown on the page. -->
           <form id="contact-form" novalidate data-contact-email="tcmclinicthepresent@gmail.com">
+            <!-- honeypot: hidden from people, bots fill it in -->
+            <input type="text" name="company" id="company" tabindex="-1" autocomplete="off"
+              style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
             <div class="form-field">
               <label for="name">
                 <span class="en-only">Name</span>
@@ -337,7 +340,6 @@
 
     if (!valid) return;
 
-    // Simulate network delay → success (preview only)
     submitBtn.disabled = true;
     const labelEl = document.getElementById('submit-label');
     const origHTML = labelEl.innerHTML;
@@ -349,12 +351,26 @@
       labelEl.querySelectorAll('.en-only').forEach(el => { el.style.display = lang === 'ko' ? 'none' : 'inline'; });
     } catch(e) {}
 
-    await new Promise(r => setTimeout(r, 800));
-    form.style.display = 'none';
-    successEl.style.display = 'block';
-    successEl.focus();
-    submitBtn.disabled = false;
-    labelEl.innerHTML = origHTML;
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, email, message,
+          company: document.getElementById('company')?.value || ''
+        }),
+      });
+      if (!res.ok) throw new Error('send failed');
+      form.style.display = 'none';
+      successEl.style.display = 'block';
+      successEl.focus();
+    } catch (err) {
+      errorEl.style.display = 'block';
+      errorEl.focus?.();
+    } finally {
+      submitBtn.disabled = false;
+      labelEl.innerHTML = origHTML;
+    }
   });
 </script>
 </body>
