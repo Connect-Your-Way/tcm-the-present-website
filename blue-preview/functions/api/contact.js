@@ -37,7 +37,7 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: "not_configured" }, 500);
   }
 
-  const to = env.CONTACT_TO || "tcmclinicthepresent@gmail.com";
+  const to = env.CONTACT_TO || "zacckim@gmail.com";
   const from = env.CONTACT_FROM || "TCM Clinic The Present <onboarding@resend.dev>";
 
   const text =
