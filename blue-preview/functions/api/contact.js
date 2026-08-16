@@ -38,7 +38,7 @@ export async function onRequestPost(context) {
   }
 
   const to = env.CONTACT_TO || "zacckim@gmail.com";
-  const from = env.CONTACT_FROM || "TCM Clinic The Present <onboarding@resend.dev>";
+  const from = env.CONTACT_FROM || "TCM Clinic The Present <noreply@tcmclinicthepresent.com.au>";
 
   const text =
     "New enquiry from the TCM Clinic The Present website\n\n" +
