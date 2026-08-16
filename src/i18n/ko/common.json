@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "TCM The Present",
+    "name": "TCM Clinic The Present",
     "tagline": "모바일 한의원 서비스"
   },
   "nav": {
@@ -11,7 +11,7 @@
     "ariaLabel": "메인 내비게이션"
   },
   "header": {
-    "logoAriaLabel": "TCM The Present — 홈",
+    "logoAriaLabel": "TCM Clinic The Present — 홈",
     "wordmarkSubtitle": "더 프레젠트 한의원",
     "contactCta": "문의하기",
     "skipToMain": "본문으로 건너뛰기",
@@ -27,7 +27,7 @@
   },
   "footer": {
     "serviceArea": "호주 전역 요양원, 은퇴자 마을, 가정 방문 진료.",
-    "copyright": "© {year} TCM The Present. All rights reserved.",
+    "copyright": "© {year} TCM Clinic The Present. All rights reserved.",
     "kakaotalk": "카카오톡으로 문의",
     "kakaotalkAriaDisabled": "카카오톡 — 준비 중",
     "links": "사이트 링크",

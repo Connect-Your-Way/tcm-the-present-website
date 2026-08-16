@@ -1,4 +1,4 @@
-/* TCM The Present — i18n Language Toggle
+/* TCM Clinic The Present — i18n Language Toggle
    ===========================================
    Design preview implementation. Production note (GUIDELINE.md §12):
    The Astro build uses /en/ and /ko/ path prefixes with server-side

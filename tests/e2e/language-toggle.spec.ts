@@ -69,11 +69,11 @@ test("lang-toggle: round-trip on Home preserves page without 404", async ({
   // B-12 fix: aria-label is now "한국어로 전환" (WCAG 2.1 G149).
   await page.locator("header").getByRole("link", { name: /한국어로 전환/i }).click();
   await expect(page).toHaveURL("/ko/");
-  await expect(page).toHaveTitle(/TCM The Present/i);
+  await expect(page).toHaveTitle(/TCM Clinic The Present/i);
 
   await page.locator("header").getByRole("link", { name: /switch to english/i }).click();
   await expect(page).toHaveURL("/en/");
-  await expect(page).toHaveTitle(/TCM The Present/i);
+  await expect(page).toHaveTitle(/TCM Clinic The Present/i);
 });
 
 // TC-005 — Footer language toggle preserves current path (F-01 AC-5, B-05/B-06 fix)

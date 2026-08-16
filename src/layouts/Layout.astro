@@ -19,7 +19,7 @@ export interface Props {
 
 const { title, description, locale, currentPath } = Astro.props;
 const bundle = loadLocaleBundle(locale);
-const siteName = "TCM The Present";
+const siteName = "TCM Clinic The Present";
 // SITE_URL: set in .env.local / production secrets (see .env.example).
 // Falls back to localhost:3001 for local dev; do not use import of env.ts here
 // (that would run requireEnv() on secret vars during static prerender — see env.ts header).

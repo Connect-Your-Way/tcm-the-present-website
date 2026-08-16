@@ -1,7 +1,7 @@
 {
   "name": "tcm-the-present",
   "version": "0.1.0",
-  "description": "TCM The Present — bilingual Traditional Chinese Medicine marketing site (EN/KO)",
+  "description": "TCM Clinic The Present — bilingual Traditional Chinese Medicine marketing site (EN/KO)",
   "private": true,
   "type": "module",
   "engines": {

@@ -48,7 +48,7 @@ for (const route of ROUTES) {
     expect(response?.status(), `Expected 200 on ${route.url}`).toBe(200);
 
     // AC-1: Valid HTML — page has a title
-    await expect(page).toHaveTitle(/TCM The Present/i);
+    await expect(page).toHaveTitle(/TCM Clinic The Present/i);
 
     // AC-1: No console errors
     expect(

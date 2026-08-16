@@ -1,4 +1,4 @@
-/* TCM The Present — Phase 2 Corrections
+/* TCM Clinic The Present — Phase 2 Corrections
    =========================================
    This file patches base.css for mobile responsiveness and accessibility.
    Loaded AFTER base.css in every phase-02 page.
@@ -538,7 +538,7 @@ body { padding-top: 72px; }
 
 /* Keep the English wordmark in the display serif even in Korean mode.
    (The broad `:lang(ko) { font-family: var(--font-ko) }` rule was overriding
-   the "TCM The Present" wordmark to the Korean sans font.) */
+   the "TCM Clinic The Present" wordmark to the Korean sans font.) */
 .site-header .logo-text-group {
   font-family: var(--font-display);
 }

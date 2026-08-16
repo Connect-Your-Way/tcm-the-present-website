@@ -1,4 +1,4 @@
-/* ─── TCM The Present — Design Tokens ──────────────────────────────────────
+/* ─── TCM Clinic The Present — Design Tokens ──────────────────────────────────────
  * ADR-003: CSS custom properties are the integration seam between
  * the engineering track and the ui-ux-designer track (GUIDELINE.md §11).
  * Layout.astro imports this file ONCE; all components use var(--token-name).
