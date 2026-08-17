@@ -587,3 +587,21 @@ body { padding-top: 72px; }
     margin: 0 auto 24px;
   }
 }
+
+/* ── Clinical Philosophy figure: floats right on desktop, full-width on mobile ──
+   Same treatment as the practitioner portrait above — at 40% of a phone screen
+   the image was too small to read. */
+.philosophy-figure {
+  float: right;
+  width: 40%;
+  max-width: 340px;
+  margin: 0 0 24px 40px;
+}
+@media (max-width: 768px) {
+  .philosophy-figure {
+    float: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 24px;
+  }
+}
