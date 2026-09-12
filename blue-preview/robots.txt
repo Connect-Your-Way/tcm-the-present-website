@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tcmclinicthepresent.com.au/sitemap.xml
