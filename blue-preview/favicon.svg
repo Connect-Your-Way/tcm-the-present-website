@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="140 0 1210 1210">
+  <!-- Crown mark from logo.png (TCM Clinic The Present), simplified for small sizes -->
+  <g fill="none" stroke="#816026" stroke-width="44" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M210 430 L330 860 L1160 860 L1280 430"/>
+    <path d="M210 430 L390 680 L483 490 L590 680 L745 335 L900 680 L1006 490 L1100 680 L1280 430"/>
+  </g>
+  <polygon fill="#816026" points="320,915 1170,915 1150,1010 340,1010"/>
+  <g fill="#816026">
+    <circle cx="210" cy="430" r="66"/>
+    <circle cx="483" cy="490" r="52"/>
+    <circle cx="1006" cy="490" r="52"/>
+    <circle cx="1280" cy="430" r="66"/>
+  </g>
+  <circle fill="#d31c26" cx="745" cy="300" r="78"/>
+</svg>
